@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 16 Avril 2018 à 15:18
+-- Généré le :  Lun 23 Avril 2018 à 14:51
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -155,22 +155,6 @@ CREATE TABLE `commande` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `glpi_fournisseur`
---
-
-CREATE TABLE `glpi_fournisseur` (
-  `id` int(255) NOT NULL,
-  `marque` varchar(255) NOT NULL,
-  `ref` varchar(255) NOT NULL,
-  `ville` varchar(255) NOT NULL,
-  `adresse` varchar(255) NOT NULL,
-  `cp` varchar(255) NOT NULL,
-  `num` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `liaisonproduit`
 --
 
@@ -204,6 +188,26 @@ CREATE TABLE `lignecde` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `marques`
+--
+
+CREATE TABLE `marques` (
+  `id_marque` int(11) NOT NULL,
+  `libelle_marque` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `photo_marque` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `libelle_id_marque` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `marques`
+--
+
+INSERT INTO `marques` (`id_marque`, `libelle_marque`, `photo_marque`, `libelle_id_marque`) VALUES
+(1, 'Nike', '', 'Nike');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `photoproduit`
 --
 
@@ -225,7 +229,7 @@ CREATE TABLE `photoproduit` (
 --
 
 INSERT INTO `photoproduit` (`id_photoproduit`, `photo_produit`, `id_produit`, `role_photoproduit`, `id_role_photoproduit`, `pardefaut_photoproduit`, `id_pardefaut_photoproduit`, `numero_photoproduit`, `id_numero_photoproduit`, `role_id_produit`) VALUES
-(1, 'images/produits/th-tennis.jpg', 45, 1, 1, 1, 1, 1, 1, 1);
+(1, 'images/produits/cortez-noir.jpg', 45, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -235,10 +239,10 @@ INSERT INTO `photoproduit` (`id_photoproduit`, `photo_produit`, `id_produit`, `r
 
 CREATE TABLE `produits` (
   `id_produit` int(11) NOT NULL,
-  `id_categorie` int(11) NOT NULL,
+  `libelle_categorie` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `libelle_marque` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `code_produit` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_produit` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `marque_produit` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description_produit` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `prixunitaireHT_produit` float NOT NULL,
   `quantite_produit` int(11) NOT NULL,
@@ -251,8 +255,8 @@ CREATE TABLE `produits` (
 -- Contenu de la table `produits`
 --
 
-INSERT INTO `produits` (`id_produit`, `id_categorie`, `code_produit`, `nom_produit`, `marque_produit`, `description_produit`, `prixunitaireHT_produit`, `quantite_produit`, `quantitelimite_produit`, `promo_produit`, `couleur_produit`) VALUES
-(45, 1, 'TSHNIK45', 'old vintage 90\'s', 'nike', NULL, 50, 20, 20, 10, 'bleu');
+INSERT INTO `produits` (`id_produit`, `libelle_categorie`, `libelle_marque`, `code_produit`, `nom_produit`, `description_produit`, `prixunitaireHT_produit`, `quantite_produit`, `quantitelimite_produit`, `promo_produit`, `couleur_produit`) VALUES
+(45, 'CHAUSSURES', 'NIKE', 'NIKCHA45', 'old vintage 90\'s', 'description', 50, 20, 20, 10, 'BLEU');
 
 -- --------------------------------------------------------
 
@@ -280,7 +284,8 @@ CREATE TABLE `utilisateurs` (
 INSERT INTO `utilisateurs` (`id_utilisateur`, `pseudo`, `prenom_utilisateur`, `nom_utilisateur`, `mot_de_passe`, `adresse_email`, `code_postal`, `rue`, `pays`, `administrateur`) VALUES
 (6, 'membre', 'membre', 'membre', '0285676daf56797679e6e743a0b5263d7400aae1', 'membre@membre.fr', 66000, '5 Rue du membre', 'France', 0),
 (4, 'j.michel', 'jean', 'michel', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'jean.michel@gmail.com', 66000, '5 Rue de la Joie', 'France', 0),
-(7, 'admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.fr', 66000, '5 Rue de l\'admin', 'France', 1);
+(7, 'admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.fr', 66000, '5 Rue de l\'admin', 'France', 1),
+(42, 'g.cascales', 'gr&eacute;gory', 'cascales', 'ffc76d04fb1121b11fffcc4f1692317d6d1b3450', 'gregory.cascales@gmail.com', NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -324,7 +329,8 @@ ALTER TABLE `avis`
 -- Index pour la table `categories`
 --
 ALTER TABLE `categories`
-  ADD PRIMARY KEY (`id_categorie`);
+  ADD PRIMARY KEY (`id_categorie`),
+  ADD KEY `libelle_categorie` (`libelle_categorie`);
 
 --
 -- Index pour la table `client`
@@ -354,6 +360,13 @@ ALTER TABLE `lignecde`
   ADD KEY `id_commande` (`id_commande`);
 
 --
+-- Index pour la table `marques`
+--
+ALTER TABLE `marques`
+  ADD PRIMARY KEY (`id_marque`),
+  ADD KEY `libelle_marque` (`libelle_marque`);
+
+--
 -- Index pour la table `photoproduit`
 --
 ALTER TABLE `photoproduit`
@@ -365,7 +378,8 @@ ALTER TABLE `photoproduit`
 --
 ALTER TABLE `produits`
   ADD PRIMARY KEY (`id_produit`),
-  ADD KEY `id_categorie` (`id_categorie`);
+  ADD KEY `id_categorie` (`libelle_categorie`),
+  ADD KEY `id_marque` (`libelle_marque`);
 
 --
 -- Index pour la table `utilisateurs`
@@ -426,6 +440,11 @@ ALTER TABLE `liaisonproduit`
 ALTER TABLE `lignecde`
   MODIFY `id_lignecde` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT pour la table `marques`
+--
+ALTER TABLE `marques`
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT pour la table `photoproduit`
 --
 ALTER TABLE `photoproduit`
@@ -439,7 +458,7 @@ ALTER TABLE `produits`
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT pour la table `voteavis`
 --
@@ -490,7 +509,8 @@ ALTER TABLE `photoproduit`
 -- Contraintes pour la table `produits`
 --
 ALTER TABLE `produits`
-  ADD CONSTRAINT `produits_ibfk_1` FOREIGN KEY (`id_categorie`) REFERENCES `categories` (`id_categorie`);
+  ADD CONSTRAINT `produits_ibfk_1` FOREIGN KEY (`libelle_categorie`) REFERENCES `categories` (`libelle_categorie`),
+  ADD CONSTRAINT `produits_ibfk_2` FOREIGN KEY (`libelle_marque`) REFERENCES `marques` (`libelle_marque`);
 
 --
 -- Contraintes pour la table `voteavis`

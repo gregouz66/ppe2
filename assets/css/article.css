@@ -1,0 +1,73 @@
+body
+{
+	background-color: beige;
+}
+
+h2
+{
+	font-family: sans-serif;
+	font-size: 1.5em;
+	margin: 0;
+}
+h4
+{
+	font-size: 2.5em;
+	font-family: fantasy;
+	margin-bottom: 0;
+}
+
+.ancien_prix {
+  text-decoration: line-through;
+  color: red;
+	font-style: italic;
+  margin-right: 1em;
+  float: left;
+}
+
+.prix_promo {
+  color: green;
+}
+
+.paragraphes {
+	padding-top: 1em;
+}
+
+.img_article {
+	border: solid darkgray 1.9px;
+	width: 100%;
+	height: auto;
+}
+
+.cadre-article
+{
+	display: inline-flex;
+}
+
+.description-article
+{
+	padding-left: 2em;
+	margin-right: 9em;
+}
+
+.prix-article-promo
+{
+	margin-top: 5em;
+  min-width: 280px;
+}
+
+.prix-article
+{
+	margin-top: 5em;
+  min-width: 200px;
+}
+
+.cadre-image-article
+{
+	width: 35%;
+  min-width: 200px;
+	max-width: 350px;
+}
+
+.h2_name {
+	font-size: 1.3em;
+}

@@ -1,0 +1,250 @@
+@font-face {
+	font-family: "futura-pt";
+	src: url('assets/fonts/FuturaPTLight.ttf');
+}
+
+a {
+    border-bottom: none;
+}
+
+.primary {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 12px 36px;
+}
+
+.sect_titre {
+    padding: 0;
+    margin: 0 auto;
+    position: relative;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.style_titre {
+    color: #2d2d2d;
+    font-family: futura-pt,sans-serif;
+    font-size: 24px;
+    letter-spacing: 1.7px;
+    font-weight: 700;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    height: 80px;
+    margin: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.style_titre, .sect_titre {
+    text-align: center;
+    width: 100%;
+}
+
+.prod {
+    position: relative;
+    display: block;
+    overflow: visible;
+}
+
+.titre_prod2 {
+    overflow: hidden;
+    height: 44px;
+    line-height: 22px;
+    word-wrap: break-word;
+}
+
+.prix_style2 {
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #666;
+    white-space: nowrap;
+}
+
+.resultp {
+    font-family: futura-pt,sans-serif;
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 20px;
+    color: #999;
+    text-align: center;
+    margin: 0 0 4px;
+    padding: 16px 0 0;
+}
+
+.art_prod {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  width: calc(50% - 12px / 2);
+  margin: 12px 0 1px 12px;
+}
+
+.art_prod:nth-of-type(4n+1) {
+    margin-left: 0;
+}
+
+.art_prod:nth-of-type(4n+4) {
+    margin-right: 0;
+}
+
+.a_prod {
+    display: block;
+    text-decoration: none;
+}
+
+.div_img_prod {
+    position: relative;
+    width: 100%;
+    height: 390px;
+    font-size: 0;
+    margin-bottom: 9px;
+    background-color: #eee;
+    display: block;
+		min-width: 209px;
+}
+
+.div_img_prod img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 0;
+}
+
+.titre_prod1 {
+    font-family: "futura-pt",sans-serif;
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 20px;
+    color: #2d2d2d;
+    display: block;
+    width: 100%;
+    margin: 0;
+    height: 40px;
+    margin-bottom: 12px;
+    padding-right: 1em;
+}
+
+.prix_style1 {
+    font-family: futura-pt,sans-serif;
+    font-size: 14px;
+    letter-spacing: .5px;
+    line-height: 20px;
+    color: #2d2d2d;
+    margin: 0;
+    height: 40px;
+}
+
+.button_fav {
+    position: absolute;
+    bottom: 111px;
+    right: 10px;
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    color: #2d2d2d;
+    border: none;
+    background-color: #f2f1f1;
+    padding: 0;
+    cursor: copy;
+    outline: none;
+}
+
+.button_fav span:first-child {
+    width: 20px;
+    height: 18px;
+}
+
+.icon_fav {
+    display: inline-block;
+    box-sizing: border-box;
+    color: currentcolor;
+}
+
+.ancienprix {
+  text-decoration: line-through;
+  color: red;
+	font-style: italic;
+  margin-right: 1em;
+  float: left;
+}
+
+.prixpromo {
+  color: green;
+}
+
+@media (max-width: 528.9px){
+.for_phone {
+    text-align: center;
+}
+.div_img_prod {
+  width: calc(170% - 24px / 1);
+    margin-left: calc(-23% - 24px / 2);
+}
+.ancienprix {
+	margin-right: -5em;
+	margin-left: -1em;
+}
+.prixpromo {
+  padding-right: 0em;
+}
+}
+
+@media (max-width: 555px){
+	.div_img_prod {
+	    height: 325px;
+	}
+}
+
+@media (min-width: 430px){
+.div_img_prod {
+    height: 375px;
+	}
+}
+
+@media (min-width: 529px){
+.art_prod {
+    width: calc(50% - 24px / 2);
+}
+.div_img_prod {
+    height: 390px;
+}
+}
+
+@media (min-width: 768px){
+.art_prod {
+    width: calc(33.333% - 35px / 3);
+}
+.div_img_prod {
+    height: 390px;
+}
+.primary {
+    padding: 0 0 36px;
+}
+}
+
+@media (min-width: 1024px){
+.art_prod {
+    width: calc(25% - 55px / 4);
+}
+.div_img_prod {
+    height: 340px;
+}
+}
+
+@media (min-width: 1100px){
+.div_img_prod {
+    height: 390px;
+}
+}

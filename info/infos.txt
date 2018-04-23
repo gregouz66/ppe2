@@ -1,0 +1,13 @@
+BDD
+
+heleneridlhelp.mysql.db
+heleneridlhelp
+Morgann66
+
+
+FTP
+
+ftp.cluster023.hosting.ovh.net
+heleneridl-ppe
+Azertyriu66
+21

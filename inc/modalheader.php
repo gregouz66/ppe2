@@ -11,11 +11,11 @@
 
       <div class="modal-body">
 
-        <?php if(!isset($_SESSION['id_utilisateur'])) { ?>
+        <?php if(isset($_SESSION['id_utilisateur']) OR isset($_SESSION['id_client'])) { ?>
+        <a href="#"><button class="btn btn-primary">Mon profil</button></a>
+      <?php } else { ?>
         <a href="connexion.php"><button class="btn btn-primary">Connexion</button></a>
         <a href="inscription.php"><button class="btn btn-primary">inscription</button></a>
-      <?php } else { ?>
-        <a href="#"><button class="btn btn-primary">Mon profil</button></a>
       <?php } ?>
 
       </div>

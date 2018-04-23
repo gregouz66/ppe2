@@ -2,7 +2,7 @@
 // Traitement du formulaire s'il a bien été envoyé EDITPDP
 if(isset($_POST["edit_photo"])) {
   if (isset($_FILES['avatar'])) {
-    $dossier = 'affichageproduit/imageproduit/';
+    $dossier = 'images/produits/';
     $fichier = basename($_FILES['avatar']['name']);
     $taille_maxi = 530000;
     $taille = filesize($_FILES['avatar']['tmp_name']);
@@ -26,7 +26,7 @@ if(isset($_POST["edit_photo"])) {
         //on met le chemin dans la var
         $linkpdp = $dossier . $fichier;
         //Ajout de la photo au produit en question dans la bdd
-        $editphoto = $bdd->prepare("UPDATE produits set image_produit = ? WHERE id_produit = ? LIMIT 1");
+        $editphoto = $bdd->prepare("UPDATE photoproduit set photo_produit = ? WHERE id_produit = ? AND pardefaut_photoproduit = 1 LIMIT 1");
         $editphoto->execute(array($linkpdp, $idproduit));
 
         $errors1[] = 'La photo a bien été enregistrée !';

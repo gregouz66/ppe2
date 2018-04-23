@@ -16,17 +16,17 @@ catch (Exception $e)
 
 }
 
-
-
-if(isset($_SESSION['id_utilisateur'])) {
-   $getid = intval($_SESSION['id_utilisateur']);
-   $req = $bdd->prepare('SELECT * FROM utilisateurs WHERE id_utilisateur = ?');
+if(isset($_SESSION['id_client'])) {
+   $getid = intval($_SESSION['id_client']);
+   $req = $bdd->prepare('SELECT * FROM client WHERE id_client = ?');
    $req->execute(array($getid));
    $userinfo = $req->fetch();
-   $_SESSION['id_utilisateur'] = $userinfo['id_utilisateur'];
-   $_SESSION['prenom_utilisateur'] = $userinfo['prenom_utilisateur'];
-   $_SESSION['adresse_email'] = $userinfo['adresse_email'];
-   $_SESSION['administrateur'] = $userinfo['administrateur'];
+   $_SESSION['id_client'] = $userinfo['id_client'];
+   $_SESSION['prenom_client'] = $userinfo['prenom_client'];
+   $_SESSION['nom_client'] = $userinfo['nom_client'];
+   $_SESSION['email_client'] = $userinfo['email_client'];
+   $_SESSION['nom_affichage'] = $userinfo['nom_affichage'];
+	 $_SESSION['administrateur'] = $userinfo['administrateur'];
 }
 
 ?>

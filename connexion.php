@@ -12,12 +12,12 @@ if(isset($_POST['connexion'])) {
    $mail = htmlspecialchars($_POST['email']);
    $mdp = sha1($_POST['mdp']);
    if(!empty($mail) AND !empty($mdp)) {
-      $req = $bdd->prepare("SELECT * FROM utilisateurs WHERE adresse_email = ? AND mot_de_passe = ?");
+      $req = $bdd->prepare("SELECT * FROM client WHERE email_client = ? AND mot_de_passe = ?");
       $req->execute(array($mail, $mdp));
       $userexiste = $req->rowCount();
       if($userexiste == 1) {
          $userinfo = $req->fetch();
-         $_SESSION['id_utilisateur'] = $userinfo['id_utilisateur'];
+         $_SESSION['id_client'] = $userinfo['id_client'];
          header( "refresh:3;url=index.php" );
          $erreur = "<font color='green'>Vous êtes maintenant connecté ! Redirection en cours...</font>";
       } else {

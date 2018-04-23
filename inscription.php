@@ -22,45 +22,55 @@ if(isset($_POST['forminscription'])) {
     $nom = strtolower($nom);
 
 	if(!empty($_POST['nom']) AND !empty($_POST['prenom']) AND !empty($_POST['email']) AND !empty($_POST['mdp']) AND !empty($_POST['mdprpt'])) {
+
+          $nomaffich = $prenom;
+
 					// Vérification si les deux mdp correspondent
 					if ($mdp == $mdprpt) {
 						// Vérification e-mail valide ou non
 						if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-							$reqemail = $bdd->prepare("SELECT * FROM utilisateurs WHERE adresse_email = ?");
+							$reqemail = $bdd->prepare("SELECT * FROM client WHERE email_client = ?");
 							$reqemail->execute(array($email));
 							$mailpris = $reqemail->rowCount();
 							// Vérification si e-mail existe
 							if($mailpris == 0) {
-                //Définit le pseudo
-                $plettre = $prenom[0];
-                $pseudo = $plettre . "." . $nom;
 
                   //Vérification mdp correspondent
   								if($mdp == $mdprpt) {
+
+                    // Détermine date de création
+                    date_default_timezone_set('Europe/Madrid');
+                    $date = date("Y.m.d");
   									// Création du client dans la bdd
-  									$creationmembre = $bdd->prepare("INSERT INTO utilisateurs(pseudo, prenom_utilisateur, nom_utilisateur, mot_de_passe, adresse_email) VALUES(?, ?, ?, ?, ?)");
-  									$creationmembre->execute(array( $pseudo, $prenom, $nom, $mdp, $email));
+  									$creationmembre = $bdd->prepare("INSERT INTO client(prenom_client, nom_client, nom_affichage, mot_de_passe, email_client, datecreation_client) VALUES(?, ?, ?, ?, ?, ?)");
+  									$creationmembre->execute(array($prenom, $nom, $nomaffich, $mdp, $email, $date));
+                    $result_inscription = $creationmembre->rowCount();
 
+                    if($result_inscription == 1){
 
-  								 header( "refresh:3;url=connexion.php" );
-		 $erreur = "<font color='green'>Vous êtes maintenant Inscription ! Redirection en cours...</font>";
-  										} else {
-  											$erreur = "Vos mots de passe ne correspondent pas !";
-  										}
+      								header( "refresh:3;url=connexion.php" );
+    		              $erreur = "<font color='green'>Vous êtes maintenant inscrit ! Redirection en cours...</font>";
+                    } else {
+                      $erreur = "Un problème est survenue, réessayez !";
+                    }
 
 									} else {
-										$erreur = "Votre adresse mail est déjà utilisée !";
+										$erreur = "Vos mots de passe ne correspondent pas !";
 									}
+
 								} else {
-									$erreur = "Votre adresse e-mail est invalide";
+									$erreur = "Votre adresse mail est déjà utilisée !";
 								}
 							} else {
-								$erreur = "Vos mots de passe ne correspondent pas !";
+								$erreur = "Votre adresse e-mail est invalide";
 							}
-        		} else {
-        			$erreur = "Tous les champs doivent être complétés !";
-        		}
-        	}
+						} else {
+							$erreur = "Vos mots de passe ne correspondent pas !";
+						}
+      		} else {
+      			$erreur = "Tous les champs doivent être complétés !";
+      		}
+      	}
 ?>
 
         <!-- HEADER -->

@@ -100,7 +100,7 @@
                 </li>
 
                 <?php
-                  if(isset($_SESSION['id_utilisateur'])) {
+                  if(isset($_SESSION['id_utilisateur']) OR isset($_SESSION['id_client'])) {
                   ?>
                 <li class="li_icon_header"> <div>
                   <a type="a" href="logout.php" icon="bagUnfilled" data-testid="bagIcon" class="a_icon_header a2_icon_header" aria-label="Panier">
@@ -162,7 +162,7 @@
 
               <nav class="navbar navbar-inverse bg-inverse" style="display: inline-block; width: 100%; height: 4.72em;" data-testid="primarynav-large-men">
 
-                <?php if(isset($_SESSION['administrateur'])) { ?>
+                <?php if(isset($_SESSION['administrateur']) AND $_SESSION['administrateur'] > 0) { ?>
                 <div style="margin-left: auto; margin-right: auto; width: 52em;">
                 <?php } else { ?> <div style="margin-left: auto; margin-right: auto; width: 45em;"> <?php } ?>
 
@@ -208,7 +208,7 @@
                   </button>
                 </a>
 
-                <?php if(isset($_SESSION['administrateur'])) { ?>
+                <?php if(isset($_SESSION['administrateur']) AND $_SESSION['administrateur'] > 0) { ?>
                 <a href="admin.php" style="float: left;">
                   <button class="button_categories_header" data-testid="primarynav-button">
                     <span class=""><span>Administration</span></span>
@@ -293,12 +293,12 @@
    <section class="sct_dropdown2">
        <ul class="actions vertical">
 
-         <?php if(isset($_SESSION['administrateur'])) { ?>
+         <?php if(isset($_SESSION['administrateur']) AND $_SESSION['administrateur'] > 0) { ?>
          <li><a href="admin.php" class="button big fit">Administration</a></li>
        <?php } ?>
 
          <?php
-           if (isset($_SESSION['id_utilisateur'])) { ?>
+           if (isset($_SESSION['id_utilisateur']) OR isset($_SESSION['id_client'])) { ?>
                <li>
                  <a href="#" class="button big fit">Mon compte</a></li>
                <li><a href="logout.php" class="button big fit">Déconnexion</a></li>

@@ -3,7 +3,7 @@ require ('admin/utilisateurs/ajout_utilisateur.php');
 require ('admin/utilisateurs/suppr_utilisateur.php');
 
   //Lire la liste d'utilisateur
-  $req = $bdd->prepare('SELECT * FROM utilisateurs ');
+  $req = $bdd->prepare('SELECT * FROM client ');
   $req->execute();
   // On récupère le resultat
   $result = $req->fetchAll();
@@ -50,13 +50,11 @@ require ('admin/utilisateurs/suppr_utilisateur.php');
             // on affiche les titres
             echo '<tr>';
 
-            echo '<th>ID</th>';
-
-            echo '<th>Pseudo</th>';
-
-            echo '<th>Mot de passe</th>';
-
             echo '<th>Adresse e-mail</th>';
+
+            echo '<th>Prenom</th>';
+
+            echo '<th>Nom</th>';
 
             echo '<th>Grade</th>' ;
 
@@ -72,19 +70,17 @@ require ('admin/utilisateurs/suppr_utilisateur.php');
 
         foreach($result as $row) {
 
-            echo '<tr>';
+          echo '<tr>';
 
-            echo '<td>'.$row["id_utilisateur"].'</td>';
+          echo '<td>'.$row["email_client"].'</td>';
 
-            echo '<td>'.$row["pseudo"].'</td>';
+          echo '<td>'.$row["prenom_client"].'</td>';
 
-          echo '<td>'.$row["mot_de_passe"].'</td>';
-
-            echo '<td>'.$row["adresse_email"].'</td>';
+          echo '<td>'.$row["nom_client"].'</td>';
 
           echo '<td>'.$row["administrateur"].'</td>';
 
-          echo '<td><a href="admin.php?selector=2&top='. $row["id_utilisateur"].'"><button type="submit" class="btn btn-danger btnsuppr">Suppr</button></a></td>';
+          echo '<td><a href="admin.php?selector=2&top='. $row["id_client"].'"><button type="submit" class="btn btn-danger btnsuppr">Suppr</button></a></td>';
 
           echo '</tr>'."\n";
 
@@ -138,8 +134,10 @@ require ('admin/utilisateurs/suppr_utilisateur.php');
     <br>
     <select name="admin">
       <option value=""> ----- Choisir ----- </option>
-      <option value="1"> Membre </option>
-      <option value="2"> Administrateur </option>
+      <option value="0"> Membre </option>
+      <option value="1"> Commercial </option>
+      <option value="2"> Logisticien </option>
+      <option value="3"> Super-admin </option>
     </select>
   </div>
 

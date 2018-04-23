@@ -1,6 +1,6 @@
 <?php
 
-$req = $bdd->prepare('SELECT * FROM machines ');
+$req = $bdd->prepare('SELECT * FROM commande ');
 $req->execute();
 // On récupère le resultat
 $result = $req->fetchAll();

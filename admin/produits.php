@@ -62,7 +62,7 @@ $result_marq = $reqmarq->fetchAll();
             // on affiche les titres
             echo '<tr>';
 
-            echo '<th>ID</th>';
+            echo '<th>Quantité</th>';
 
 						echo '<th>Code produit</th>';
 
@@ -88,7 +88,7 @@ $result_marq = $reqmarq->fetchAll();
 
             echo '<tr>';
 
-            echo '<td>'.$row["id_produit"].'</td>';
+            echo '<td>'.$row["quantite_produit"].'</td>';
 
 						echo '<td>'.$row["code_produit"].'</td>';
 

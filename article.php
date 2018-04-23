@@ -75,7 +75,7 @@
           <h4 class="prix_promo"><?php echo $promoprix; ?> € </h4>
         <?php } else { ?>
           <div class="prix-article">
-          <h4><?php echo $row['prix_produit']; ?> € </h4>
+          <h4><?php echo $row['prixunitaireHT_produit']; ?> € </h4>
         <?php } ?>
 
     	</div>

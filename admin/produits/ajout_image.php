@@ -2,7 +2,7 @@
 // Traitement du formulaire s'il a bien été envoyé EDITPDP
 if(isset($_POST["envoyer"])) {
   if (isset($_FILES['avatar'])) {
-    $dossier = 'affichageproduit/imageproduit/';
+    $dossier = 'images/produits/';
     $fichier = basename($_FILES['avatar']['name']);
     $taille_maxi = 530000;
     $taille = filesize($_FILES['avatar']['tmp_name']);

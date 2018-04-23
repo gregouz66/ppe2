@@ -10,6 +10,18 @@ $req = $bdd->prepare('SELECT * FROM produits ');
 $req->execute();
 // On récupère le resultat
 $result = $req->fetchAll();
+
+//Lire la liste de catégorie
+$reqcat = $bdd->prepare('SELECT * FROM categories ');
+$reqcat->execute();
+// On récupère le resultat
+$result_cat = $reqcat->fetchAll();
+
+//Lire la liste de marques
+$reqmarq = $bdd->prepare('SELECT * FROM marques ');
+$reqmarq->execute();
+// On récupère le resultat
+$result_marq = $reqmarq->fetchAll();
 ?>
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -141,14 +153,15 @@ $result = $req->fetchAll();
 			<label for="categorie">*Catégorie</label>
 			<br>
 			<select name="categorie">
-		<option value=""> ----- Choisir ----- </option>
-		<option value="1"> Tee-shirt </option>
-		<option value="2"> Pull </option>
-		<option value="3"> Pantalon </option>
-		<option value="4"> Jogging </option>
-		<option value="5"> Chaussures </option>
-		<option value="6"> Cadeaux </option>
-		</select>
+					<?php if($result_cat) {
+	          echo '<option value=""> ----- Choisir ----- </option>';
+	          foreach($result_cat as $row) { ?>
+			        <option value="<?php echo $row['libelle_categorie']; ?>"> <?php echo $row['libelle_categorie']; ?> </option>
+		      <?php } ?>
+		      <?php } else { ?>
+		        <option value=""> AUCUNE CATEGORIES </option>
+		      <?php } ?>
+			</select>
 		</div>
 
 		<br>
@@ -157,12 +170,14 @@ $result = $req->fetchAll();
 			<label for="marque">*Marque</label>
 			<br>
 			<select name="marque">
-		<option value=""> ----- Choisir ----- </option>
-		<option value="1"> Nike </option>
-		<option value="2"> Adidas </option>
-		<option value="3"> Coq Sportif </option>
-		<option value="4"> Ralph Lauren </option>
-		<option value="5"> Tommy hilfiger </option>
+				<?php if($result_marq) {
+					echo '<option value=""> ----- Choisir ----- </option>';
+					foreach($result_marq as $row) { ?>
+						<option value="<?php echo $row['libelle_marque']; ?>"> <?php echo $row['libelle_marque']; ?> </option>
+				<?php } ?>
+				<?php } else { ?>
+					<option value=""> AUCUNE MARQUES </option>
+				<?php } ?>
 		</select>
 		</div>
 
@@ -193,17 +208,24 @@ $result = $req->fetchAll();
 	    <br>
 	    <select name="couleur">
 	  <option value=""> ----- Choisir ----- </option>
-		<option value="1"> Beige </option>
-	  <option value="2"> Blanc </option>
-	  <option value="3"> Bleu </option>
-		<option value="4"> Gris </option>
-		<option value="5"> Jaune </option>
-	  <option value="6"> Noir </option>
-		<option value="7"> Rose </option>
-	  <option value="8"> Rouge </option>
-	  <option value="9"> Vert </option>
+		<option value="Beige"> Beige </option>
+	  <option value="Blanc"> Blanc </option>
+	  <option value="Bleu"> Bleu </option>
+		<option value="Gris"> Gris </option>
+		<option value="Jaune"> Jaune </option>
+	  <option value="Noir"> Noir </option>
+		<option value="Rose"> Rose </option>
+	  <option value="Rouge"> Rouge </option>
+	  <option value="Vert"> Vert </option>
 	  </select>
 	  </div>
+
+		<br>
+
+		<div>
+      <label for="quantite">*Quantité</label>
+      <input type="text" name="quantite" class="form-control" id="quantite">
+    </div>
 
   <br>
 

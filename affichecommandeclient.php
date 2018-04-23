@@ -3,98 +3,86 @@
 <?php
          // info client
 if (isset($_POST['valider'])){
-  $Titre=htmlentities(trim($_POST['Titre']));
- $Mail=htmlentities(trim($_POST['Mail']));
-
-  $Prenom=htmlentities(trim($_POST['Prenom']));
- $Nom=htmlentities(trim($_POST['Nom']));
-
-
-  $Date2=htmlentities(trim($_POST['Date']));
-
-
-
   //adresse livraison
- $Prenom2=htmlentities(trim($_POST['Prenom2']));
-
-
-  $Nom2=htmlentities(trim($_POST['Nom2']));
- $Societe=htmlentities(trim($_POST['Societe']));
-
-
+  $Prenom_livr=htmlentities(trim($_POST['Prenom_livr']));
+  $Nom_livr=htmlentities(trim($_POST['Nom_livr']));
   $Adresse=htmlentities(trim($_POST['Adresse']));
- $CP=htmlentities(trim($_POST['Cp']));
-
-
+  $Societe=htmlentities(trim($_POST['Societe'])); //PAS OBLIGATOIRE
+  $CP=htmlentities(trim($_POST['Cp']));
   $Ville=htmlentities(trim($_POST['Ville']));
- $Pays=htmlentities(trim($_POST['Pays']));
+  $Pays=htmlentities(trim($_POST['Pays']));
+  $etat_prov=htmlentities(trim($_POST['etat_province']));
+  $adr_defaut = 1;
 
-  $Tel=htmlentities(trim($_POST['Tel']));
+  $nomcomplet_client = $Prenom_livr . ' ' . $Nom_livr;
 
-
-
-	            // Création adresse livraison du client anonyme
-                  $AdresseLivraison = $bdd->prepare("INSERT INTO Commandeanonymes(Titre,Mail,Prenom,Nom,Date,Prenom2,Nom2,Societe,adresse,Cp,Ville,Pays,Tel) VALUES(?, ?, ?,?,?,?, ?, ?,?,?,?,?,?)");
-               $AdresseLivraison->execute(array($Titre, $Mail, $Prenom,$Nom,$Date,$Prenom2, $Nom2 , $Societe,$Adresse,$CP,$Ville,$Pays,$Tel));
+  // Création adresse livraison du client anonyme
+  $AdresseLivraison = $bdd->prepare("INSERT INTO Commandeanonymes(Titre,Mail,Prenom,Nom,Date,Prenom2,Nom2,Societe,adresse,Cp,Ville,Pays,Tel) VALUES(?, ?, ?,?,?,?, ?, ?,?,?,?,?,?)");
+  $AdresseLivraison->execute(array($Titre, $Mail, $Prenom,$Nom,$Date,$Prenom2, $Nom2 , $Societe,$Adresse,$CP,$Ville,$Pays,$Tel));
 }
 ?>
 
+<?php include './inc/header.php' ?>
 
-<html>
+<article class="post">
+  <div id="wrapper">
+  <body>
 
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="./css/main.css">
-	<link rel="stylesheet" type="text/css" href="./css/ticket.css">
-	<title> Commande </title>
-</head>
+  <div id="main">
+    <h1>Votre Commande</h1>
 
-<header id="header">
-	<?php include './inc/header.php' ?>
+    <h3>Compte</h3>
 
-</header>
+    <form id="form" method="POST" action="#">
 
-	<article class="post">
-<div id="wrapper">
-<body>
+      <label>Mail</label>
+      <input type="text" name="Mail" placeholder="mail" value="<?php echo $_SESSION['email_client'] ?>" disabled/>
 
-<div id="main">
-<h1>Votre Commande</h1>
+      <label>Prenom</label>
+      <input type="text" name="Prenom" placeholder="Prenom" value="<?php echo $_SESSION['prenom_client'] ?>" disabled/>
 
-<h2>Compte</h2>
+      <label>Nom</label>
+      <input type="text" name="Nom" placeholder="Nom" value="<?php echo $_SESSION['nom_client'] ?>" disabled/>
 
-<form id="cadre" method="POST" action="#">
+      <br>
 
-    <label>Titre</label><select name="titre">
-				<option value ="M.">M.</option>
-				<option value ="Mme">Mme</option>
+      <h3>Adresse de livraison</h3>
 
-			</select>
-    		  <label>Mail</label><input type="text" name="Mail" placeholder="mail"/>
-                <label>Prenom</label>  <input type="text" name="Prenom" placeholder="Prenom"/>
-    		  <label>Nom</label><input type="text" name="Nom" placeholder="Nom"/>
-                <label>Date de naissance</label>  <input type="date" name="Date" placeholder="date"/>
+      <label>Prenom</label>
+      <input type="text" name="Prenom_livr" placeholder="Prenom"/>
 
-                <h2>Adresse de livraison</h2>
+      <label>Nom</label>
+      <input type="text" name="Nom_livr" placeholder="Nom"/>
 
-               <label>Prenom</label>   <input type="text" name="Prenom2" placeholder="Prenom"/>
-    		  <label>Nom</label><input type="text" name="Nom2" placeholder="Nom"/>
-                 <label>Societe(optionel)</label> <input type="text" name="Societe" placeholder="Société"/>
-    		  <label> Adresse</label><input type="text" name="Adressse" placeholder="Adresse"/>
-                 <label>Code Postal</label> <input type="text" name="Cp" placeholder="Code Postal"/>
-    		  <label>Ville</label><input type="text" name="Ville" placeholder="Ville"/>
-                    <label>Pays</label><select name="Pays">
-				<option value ="France">France</option>
-				<option value ="Canada">Canada</option>
+      <label>Societe(optionel)</label>
+      <input type="text" name="Societe" placeholder="Société"/>
 
-			</select>
-               <label>Téléphone mobile</label>   <input type="text" name="Tel" placeholder="Téléphone Mobile"/>
+      <label>Adresse</label>
+      <input type="text" name="Adresse" placeholder="Adresse"/>
 
-               </br>
-               <input style="font-size: 22px;" type="submit" name="valider"/>
+      <label>Pays</label>
+      <select name="Pays">
+      <option value ="France">France</option>
+      <option value ="Canada">Canada</option>
+      </select>
 
-		</article>
-</form>
+      <label>Etat / Province</label>
+      <input type="text" name="etat_province" placeholder="Etat / Province"/>
+
+      <label>Ville</label>
+      <input type="text" name="Ville" placeholder="Ville"/>
+
+      <label>Code Postal</label>
+      <input type="text" name="Cp" placeholder="Code Postal"/>
+
+      </br>
+
+      <input style="font-size: 22px;" type="submit" name="valider"/>
+
+    </form>
+
+  </div>
+</article>
 
 </body>
 

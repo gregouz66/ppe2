@@ -3,6 +3,7 @@
 <?php
 //Formulaire infos livraisons
 include ('inc/commandes/ajout_adressedefaut.php');
+include ('inc/commandes/suppr_adressedefaut.php');
 
 // REQUETE POUR SAVOIR SI LE CLIENT A UNE ADRESSE PAR DEFAUT
 $id_client = $_SESSION['id_client'];
@@ -40,15 +41,9 @@ $adrexist = $adrpardef->rowCount();
          }
     	 ?>
 
-    <h1>Votre Commande</h1>
+    <h3>Votre commande</h3>
 
-    <h3>Compte</h3>
-
-      <input type="text" name="Mail" placeholder="mail" value="<?php echo $_SESSION['email_client'] ?>" disabled/>
-
-      <input type="text" name="Prenom" placeholder="Prenom" value="<?php echo $_SESSION['prenom_client'] ?>" disabled/>
-
-      <input type="text" name="Nom" placeholder="Nom" value="<?php echo $_SESSION['nom_client'] ?>" disabled/>
+      <label>ICI LISTE ARTICLES DANS LE PANIER</label>
 
       <hr>
 
@@ -122,7 +117,9 @@ $adrexist = $adrpardef->rowCount();
             </div>
 
             <div class="col-md-6 col-sm-6" style="float: left;">
-              <a href='#'><button>Modifier</button></a>
+              <form id="form" method="POST" action="#">
+                <button type="submit" name="suppr">Supprimer</button>
+              </form>
             </div>
 
 
@@ -133,7 +130,7 @@ $adrexist = $adrpardef->rowCount();
         <h3>Option de livraison</h3>
 
         <form id="form" method="POST" action="#">
-          <input type="radio" class="" name="option_livr" value="0"/> <label>Livraison Standard (GRATUIT)</label>
+          <input type="radio" class="" name="option_livr" value="0" checked/> <label>Livraison Standard (GRATUIT)</label>
           <br>
           <input type="radio" class="" name="option_livr" value="1"/> <label>Livraison 24h (10€)</label>
         </form>
@@ -149,11 +146,17 @@ $adrexist = $adrpardef->rowCount();
         <div class="payment-methods">
           <ul>
             <li>
-              <button class="btn secondary payment-method card" style="background-image: url(&quot;https://assets.asosservices.com/asos-finance/images/paymentmethods/card.png&quot;);">Ajouter une carte de crédit/débit</button>
+              <button class="btn secondary payment-method card" style="background-image: url(&quot;https://assets.asosservices.com/asos-finance/images/paymentmethods/card.png&quot;);" disabled>Ajouter une carte de crédit/débit</button>
               <label>Ou</label>
             </li>
             <li>
-              <button class="btn secondary payment-method payPal" style="background-image: url(&quot;https://assets.asosservices.com/asos-finance/images/paymentmethods/paypal.png&quot;);">PayPal</button>
+              <button class="btn secondary payment-method payPal" style="background-image: url(&quot;https://assets.asosservices.com/asos-finance/images/paymentmethods/paypal.png&quot;);" disabled>PayPal</button>
+              <label>Ou</label>
+            </li>
+            <li>
+              <form id="form" method="POST" action="#">
+                <button name="achat_gratuit" class="btn secondary payment-method payPal" style="background-image: url(&quot;images/gratuit.png&quot;);">GRATUIT</button>
+              </form>
             </li>
           </ul>
         </div>

@@ -1,0 +1,76 @@
+.payment-methods {
+  text-align: center;
+}
+
+.payment-methods li button.btn.secondary.card {
+    background-size: 20px;
+    background-position: 15px center;
+}
+
+.wf-futurapt-bold-active .payment-methods li button.btn.secondary {
+    font-size: 14px;
+    font-size: .875rem;
+}
+.payment-methods li button.btn.secondary {
+    font-family: futura-pt,Tahoma,Geneva,Verdana,Arial,sans-serif;
+    font-style: normal;
+    font-size: 12px;
+    font-size: .75rem;
+    font-weight: 700;
+    white-space: normal;
+    background-repeat: no-repeat;
+    background-size: 34px;
+    background-position: 10px center;
+    padding-left: 48px;
+    padding-left: 3rem;
+    padding-right: 32px;
+    padding-right: 2rem;
+}
+.wf-futurapt-bold-active .btn.secondary {
+    font-size: 18px;
+    font-size: 1.125rem;
+}
+.btn.secondary:active, .btn.secondary:focus {
+    box-shadow: #0770cf 0 0 3px;
+}
+.btn.secondary:hover {
+    text-decoration: none;
+    transition: background-color .15s linear;
+}
+.btn.secondary:hover {
+    background-color: #f9f9f9;
+}
+.payment-methods li:first-child button {
+    margin-bottom: 7.2px;
+    margin-bottom: .45rem;
+}
+.btn.secondary {
+    background-color: #fff;
+    border: none;
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    outline: 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color .15s linear;
+    vertical-align: middle;
+    padding: 5.008px 5%;
+    padding: .313rem 5%;
+    border: 2px solid #d3d3d3;
+    font-family: futura-pt,Tahoma,Geneva,Verdana,Arial,sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 12px 12px;
+    padding: .75rem 12px;
+}
+.btn.secondary {
+    letter-spacing: .125rem;
+}
+.payment-methods button {
+    width: 100%;
+}

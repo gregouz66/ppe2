@@ -11,7 +11,7 @@ if (isset($_POST['achat_gratuit'])){
   // ID ADR LIVR
   // NUM COMANDE = ID COMMANDE
   // NUM FACTURE
-  // TYPE REGLEMENT
-  // METHODE REGLEMENT
+  $type_regl = 3; // 1=CARTE CREDIT/DEBIT / 2=PAYPAL / 3=GRATUIT
+  $methode_regl = 1; // (1 ou plusieurs fois)
 }
 ?>

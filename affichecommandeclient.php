@@ -41,12 +41,6 @@ $adrexist = $adrpardef->rowCount();
          }
     	 ?>
 
-    <h3>Votre commande</h3>
-
-      <label>ICI LISTE ARTICLES DANS LE PANIER</label>
-
-      <hr>
-
       <?php if($adrexist == 1) { ?>
       <div class="row">
         <div class="col-md-6 col-sm-6" style="border-right: solid;">

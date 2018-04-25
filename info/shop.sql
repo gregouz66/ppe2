@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 23 Avril 2018 à 14:51
+-- Généré le :  Mer 25 Avril 2018 à 00:00
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -51,19 +51,26 @@ CREATE TABLE `adresseclient` (
   `id_client` int(11) NOT NULL,
   `libelle_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nomcomplet_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `societe_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `voie_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `complement_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `lieuditbp_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `societe_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `voie_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `complement_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lieuditbp_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `codepostal_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `etatprovince_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ville_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `pays_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `typeadresse_adresseclient` int(11) NOT NULL,
-  `idclient_type_adresseclient` int(11) NOT NULL,
+  `typeadresse_adresseclient` int(11) DEFAULT NULL,
+  `idclient_type_adresseclient` int(11) DEFAULT NULL,
   `adressedefaut_adresseclient` int(11) NOT NULL,
-  `idclient_adressedefaut_adresseclient` int(11) NOT NULL
+  `idclient_adressedefaut_adresseclient` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `adresseclient`
+--
+
+INSERT INTO `adresseclient` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`, `adressedefaut_adresseclient`, `idclient_adressedefaut_adresseclient`) VALUES
+(16, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -118,15 +125,24 @@ CREATE TABLE `client` (
   `email_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nom_affichage` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `mot_de_passe` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `civilite` int(11) NOT NULL,
+  `civilite` int(11) DEFAULT NULL,
   `nom_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `prenom_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `telephone_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `id_question` int(11) NOT NULL,
-  `reponse` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `telephone_client` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `id_question` int(11) DEFAULT NULL,
+  `reponse` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `datecreation_client` date NOT NULL,
-  `anonyme` int(11) NOT NULL DEFAULT '0'
+  `anonyme` int(11) NOT NULL DEFAULT '0',
+  `administrateur` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `client`
+--
+
+INSERT INTO `client` (`id_client`, `email_client`, `nom_affichage`, `mot_de_passe`, `civilite`, `nom_client`, `prenom_client`, `telephone_client`, `id_question`, `reponse`, `datecreation_client`, `anonyme`, `administrateur`) VALUES
+(1, 'gregory.cascales@gmail.com', 'Gr&eacute;gory', 'ffc76d04fb1121b11fffcc4f1692317d6d1b3450', NULL, 'Cascales', 'Gr&eacute;gory', NULL, NULL, NULL, '2018-04-23', 0, 3),
+(2, 'admin@admin.fr', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, 'admin', 'admin', NULL, NULL, NULL, '2018-04-23', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -140,7 +156,7 @@ CREATE TABLE `commande` (
   `etat_commande` float NOT NULL,
   `totalTTC` float NOT NULL,
   `totalHT` float NOT NULL,
-  `totalTVA` float NOT NULL,
+  `totalTVA` float NOT NULL DEFAULT '20',
   `fraisportHT` float NOT NULL,
   `id_client` int(11) NOT NULL,
   `id_adresse_facturation` int(11) NOT NULL,
@@ -149,7 +165,7 @@ CREATE TABLE `commande` (
   `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `type_reglement` int(11) NOT NULL,
   `methode_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `liste_parametres_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `liste_parametres_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -215,13 +231,13 @@ CREATE TABLE `photoproduit` (
   `id_photoproduit` int(11) NOT NULL,
   `photo_produit` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `id_produit` int(11) NOT NULL,
-  `role_photoproduit` int(11) NOT NULL,
-  `id_role_photoproduit` int(11) NOT NULL,
+  `role_photoproduit` int(11) DEFAULT NULL,
+  `id_role_photoproduit` int(11) DEFAULT NULL,
   `pardefaut_photoproduit` int(11) NOT NULL,
-  `id_pardefaut_photoproduit` int(11) NOT NULL,
-  `numero_photoproduit` int(11) NOT NULL,
-  `id_numero_photoproduit` int(11) NOT NULL,
-  `role_id_produit` int(11) NOT NULL
+  `id_pardefaut_photoproduit` int(11) DEFAULT NULL,
+  `numero_photoproduit` int(11) DEFAULT NULL,
+  `id_numero_photoproduit` int(11) DEFAULT NULL,
+  `role_id_produit` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -229,7 +245,8 @@ CREATE TABLE `photoproduit` (
 --
 
 INSERT INTO `photoproduit` (`id_photoproduit`, `photo_produit`, `id_produit`, `role_photoproduit`, `id_role_photoproduit`, `pardefaut_photoproduit`, `id_pardefaut_photoproduit`, `numero_photoproduit`, `id_numero_photoproduit`, `role_id_produit`) VALUES
-(1, 'images/produits/cortez-noir.jpg', 45, 1, 1, 1, 1, 1, 1, 1);
+(1, 'images/produits/cortez-noir.jpg', 45, 1, 1, 1, 1, 1, 1, 1),
+(2, 'images/produits/airmax-stevens-04.jpg', 55, NULL, NULL, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -246,7 +263,7 @@ CREATE TABLE `produits` (
   `description_produit` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `prixunitaireHT_produit` float NOT NULL,
   `quantite_produit` int(11) NOT NULL,
-  `quantitelimite_produit` int(11) NOT NULL,
+  `quantitelimite_produit` int(11) DEFAULT NULL,
   `promo_produit` float DEFAULT NULL,
   `couleur_produit` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -256,7 +273,8 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`id_produit`, `libelle_categorie`, `libelle_marque`, `code_produit`, `nom_produit`, `description_produit`, `prixunitaireHT_produit`, `quantite_produit`, `quantitelimite_produit`, `promo_produit`, `couleur_produit`) VALUES
-(45, 'CHAUSSURES', 'NIKE', 'NIKCHA45', 'old vintage 90\'s', 'description', 50, 20, 20, 10, 'BLEU');
+(45, 'CHAUSSURES', 'NIKE', 'NIKCHA45', 'old vintage 90\'s', 'description', 50, 20, 20, 10, 'BLEU'),
+(55, 'tshirt', 'Nike', 'NIKTSH55', 'test', 'test', 15, 10, NULL, 0, 'Beige');
 
 -- --------------------------------------------------------
 
@@ -408,7 +426,7 @@ ALTER TABLE `adressearchive`
 -- AUTO_INCREMENT pour la table `adresseclient`
 --
 ALTER TABLE `adresseclient`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
@@ -423,7 +441,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
@@ -448,12 +466,12 @@ ALTER TABLE `marques`
 -- AUTO_INCREMENT pour la table `photoproduit`
 --
 ALTER TABLE `photoproduit`
-  MODIFY `id_photoproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_photoproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --

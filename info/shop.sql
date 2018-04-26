@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 25 Avril 2018 à 00:00
+-- Généré le :  Jeu 26 Avril 2018 à 16:53
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -224,6 +224,25 @@ INSERT INTO `marques` (`id_marque`, `libelle_marque`, `photo_marque`, `libelle_i
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `panier`
+--
+
+CREATE TABLE `panier` (
+  `id_panier` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
+  `id_produit` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `panier`
+--
+
+INSERT INTO `panier` (`id_panier`, `id_client`, `id_produit`) VALUES
+(34, 1, 55);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `photoproduit`
 --
 
@@ -261,10 +280,11 @@ CREATE TABLE `produits` (
   `code_produit` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nom_produit` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description_produit` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `prixdepartHT_produit` float NOT NULL,
+  `promo_produit` float DEFAULT NULL,
   `prixunitaireHT_produit` float NOT NULL,
   `quantite_produit` int(11) NOT NULL,
   `quantitelimite_produit` int(11) DEFAULT NULL,
-  `promo_produit` float DEFAULT NULL,
   `couleur_produit` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -272,9 +292,9 @@ CREATE TABLE `produits` (
 -- Contenu de la table `produits`
 --
 
-INSERT INTO `produits` (`id_produit`, `libelle_categorie`, `libelle_marque`, `code_produit`, `nom_produit`, `description_produit`, `prixunitaireHT_produit`, `quantite_produit`, `quantitelimite_produit`, `promo_produit`, `couleur_produit`) VALUES
-(45, 'CHAUSSURES', 'NIKE', 'NIKCHA45', 'old vintage 90\'s', 'description', 50, 20, 20, 10, 'BLEU'),
-(55, 'tshirt', 'Nike', 'NIKTSH55', 'test', 'test', 15, 10, NULL, 0, 'Beige');
+INSERT INTO `produits` (`id_produit`, `libelle_categorie`, `libelle_marque`, `code_produit`, `nom_produit`, `description_produit`, `prixdepartHT_produit`, `promo_produit`, `prixunitaireHT_produit`, `quantite_produit`, `quantitelimite_produit`, `couleur_produit`) VALUES
+(45, 'chaussures', 'Nike', 'NIKCHA45', 'old vintage 90\'s', 'description', 50, 10, 45, 20, 20, 'BLEU'),
+(55, 'tshirt', 'Nike', 'NIKTSH55', 'test', 'test', 15, 0, 15, 10, NULL, 'Beige');
 
 -- --------------------------------------------------------
 
@@ -385,6 +405,14 @@ ALTER TABLE `marques`
   ADD KEY `libelle_marque` (`libelle_marque`);
 
 --
+-- Index pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD PRIMARY KEY (`id_panier`),
+  ADD KEY `id_client` (`id_client`),
+  ADD KEY `id_produit` (`id_produit`);
+
+--
 -- Index pour la table `photoproduit`
 --
 ALTER TABLE `photoproduit`
@@ -462,6 +490,11 @@ ALTER TABLE `lignecde`
 --
 ALTER TABLE `marques`
   MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT pour la table `panier`
+--
+ALTER TABLE `panier`
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT pour la table `photoproduit`
 --

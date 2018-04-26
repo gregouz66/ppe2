@@ -71,3 +71,26 @@ h4
 .h2_name {
 	font-size: 1.3em;
 }
+ul.note_produit{
+	margin:0;
+	padding:0;
+	font:.75em/1.2 Arial, Helvetica, sans-serif;
+}
+ul.note_produit li{
+	float: left;
+	margin:0;
+	padding: 0;
+	list-style:none;
+	min-width:20px;
+	min-height:20px;
+}
+ul.note_produit li label{
+	display: block;
+	text-align: center;
+	line-height: 20px;
+	background:center top no-repeat url("../../images/etoiles.gif");
+	cursor:pointer;
+}
+ul.note_produit li.note-off label{
+	background-position: center -60px;
+}

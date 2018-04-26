@@ -19,6 +19,7 @@
 ?>
 
 <?php include ("inc/header.php"); ?>
+<script src="assets/js/article.js"></script>
 
 <!-- CSS DE LA PAGE -->
 <link rel="stylesheet" href="assets/css/article.css" />
@@ -65,6 +66,33 @@
         <span><strong>Code du produit :</strong> <?php echo $row['code_produit']; ?></span></br>
 
     		<span><strong>Made in france</strong></span>
+
+        <div class="vote">
+          <span><strong>Vote : </strong><ul class="note_produit">
+            <li>
+                <label for="note01" title="Note&nbsp;: 1 sur 5">1</label>
+                <input type="radio" name="notesA" id="note01" value="1"/>
+            </li>
+            <li>
+                <label for="note02" title="Note&nbsp;: 2 sur 5">2</label>
+                <input type="radio" name="notesA" id="note02" value="2"/>
+            </li>
+            <li>
+                <label for="note03" title="Note&nbsp;: 3 sur 5">3</label>
+                <input type="radio" name="notesA" id="note03" value="3"/>
+            </li>
+            <li>
+                <label for="note04" title="Note&nbsp;: 4 sur 5">4</label>
+                <input type="radio" name="notesA" id="note04" value="4"/>
+            </li>
+            <li>
+                <label for="note05" title="Note&nbsp;: 5 sur 5">5</label>
+                <input type="radio" name="notesA" id="note05" value="5"/>
+            </li>
+
+          </ul>
+        </span>
+        </div>
     	</div>
 
     	<!-- div du prix de l'article -->
@@ -83,6 +111,8 @@
       <?php } } ?>
 
 	</div>
+
+
 </article>
 
 

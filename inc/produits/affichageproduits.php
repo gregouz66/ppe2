@@ -1,5 +1,6 @@
-<?php if($result) {
-  foreach($result as $row) {
+<?php if($result) {?>
+    <div id="result"></div>
+  <?php foreach($result as $row) {
 
     //Attribuer le value des marque
     $marque_prod = $row['libelle_marque'];
@@ -48,7 +49,8 @@
       <?php } ?>
     </p>
   </a>
-  <button type="button" onclick="ajout_panier()" class="button_fav" aria-label="Ajouter au panier">
+
+  <button type="button" onclick="ajout_panier(<?php echo $row['id_produit']; ?>);" class="button_fav" aria-label="Ajouter au panier">
     <span class="span_icon_header">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path fill="black" fill-rule="nonzero" d="M18 17.987V7H2v11l16-.013zM4.077 5A5.996 5.996 0 0 1 10 0c2.973 0 5.562 2.162 6.038 5H20v14.986L0 20V5h4.077zm9.902-.005C13.531 3.275 11.86 2 10 2 8.153 2 6.604 3.294 6.144 4.995c.92 0 7.654.03 7.835 0z"></path>
@@ -58,35 +60,18 @@
   </button>
 </article>
 
+<?php } } ?>
+
 <!-- SCRIPT POUR AJOUT DANS PANIER -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-function ajout_panier()
+function ajout_panier(id)
 {
-  <?php
-  $idproduit = $row['id_produit'];
-  $idclient = $_SESSION['id_client'];
-
-  // Vérif si le produit existe deja dans le panier
-  $exist_panier = $bdd->prepare('SELECT * FROM panier WHERE id_client = ? AND id_produit = ? LIMIT 1');
-  $exist_panier->execute(array($idclient,$idproduit));
-  $result_exist_panier = $exist_panier->rowCount();
-
-  if($result_exist_panier == 0){
-
-  // Ajout du produit dans panier du client
-  $ajout_panier = $bdd->prepare("INSERT INTO panier(id_client, id_produit) VALUES(?, ?)");
-  $ajout_panier->execute(array($idclient,$idproduit));
-  $result_ajout_panier = $ajout_panier->rowCount();
-
-  if($result_ajout_panier == 1){ ?>
-    alert('Produit ajouté au panier');
-  <?php } else { ?>
-    alert('Problème lors de l\'ajout au panier');
-  <?php } } else {?>
-    alert('Ce produit est déjà dans votre panier !');
-    <?php } ?>
+  // var id = $('#id').val();
+  $.post('inc/panier/ajout_panier.php',{postid:id},
+function(data)
+{
+  $('#result').html(data);
+});
 }
 </script>
-
-
-<?php } } ?>

@@ -1,14 +1,17 @@
 <?php include ('inc/bdd.php'); ?>
 
 <?php
+if(isset($_SESSION['id_client'])){
+
 //Formulaire infos livraisons
 include ('inc/panier/suppr_prod.php');
 
-// REQUETE POUR SAVOIR SI LE CLIENT A UNE ADRESSE PAR DEFAUT
+// REQUETE POUR VOIR LES ARTICLES DANS LE PANIER DU CLIENT
 $id_client = $_SESSION['id_client'];
 $monpanier = $bdd->prepare("SELECT * FROM panier WHERE id_client = ?");
 $monpanier->execute(array($id_client));
 $result_panier = $monpanier->rowCount();
+}
 ?>
 
 <?php include './inc/header.php' ?>
@@ -42,7 +45,8 @@ $result_panier = $monpanier->rowCount();
          }
     	 ?>
 
-    <?php if($result_panier != 0) { // SI IL Y A DES PROD DANS LE PANIER
+    <?php if(isset($_SESSION['id_client'])){ //SI IL EST CONNECTER
+    if($result_panier != 0) { // SI IL Y A DES PROD DANS LE PANIER
       //VAR QUI SERVIRA POUR LE CALC DU PRIX TOTAL DES PROD
       $prod_panier = ''; ?>
 
@@ -120,6 +124,8 @@ $result_panier = $monpanier->rowCount();
         </div>
     <?php } else { ?>
       <h3>Votre panier est vide</h3>
+    <?php } } else { ?>
+      <h3><a href="connexion.php">Connectez-vous pour acceder à votre panier !</a></h3>
     <?php } ?>
 </article>
 </div>

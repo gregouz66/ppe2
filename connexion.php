@@ -91,6 +91,8 @@ if(isset($_POST['connexion'])) {
                   <input style="color: black!important;" type="submit" name="connexion" value="Se connecter " />
               </form>
 
+              <label>Si vous ne disposez pas de compte alors <a href="inscription.php">inscrivez-vous !</a></label>
+
             </section>
             <div class="primary">
               <div class="prod">

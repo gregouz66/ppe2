@@ -1,15 +1,27 @@
 <?php include ('inc/bdd.php'); ?>
 
 <?php
-//Formulaire infos livraisons
-include ('inc/commandes/ajout_adressedefaut.php');
-include ('inc/commandes/suppr_adressedefaut.php');
+if(isset($_SESSION['id_client'])){
 
-// REQUETE POUR SAVOIR SI LE CLIENT A UNE ADRESSE PAR DEFAUT
-$id_client = $_SESSION['id_client'];
-$adrpardef = $bdd->prepare("SELECT * FROM adresseclient WHERE id_client = ? AND adressedefaut_adresseclient = 1 LIMIT 1");
-$adrpardef->execute(array($id_client));
-$adrexist = $adrpardef->rowCount();
+  $id_client = $_SESSION['id_client'];
+  $verifpanier = $bdd->prepare("SELECT * FROM panier WHERE id_client = ?");
+  $verifpanier->execute(array($id_client));
+  $panierexist = $verifpanier->rowCount();
+
+  if($panierexist != 0){ //Si le panier n'est pas vide
+
+    //Formulaire infos livraisons
+    include ('inc/commandes/ajout_adressedefaut.php');
+    include ('inc/commandes/suppr_adressedefaut.php');
+    include ('inc/commandes/achat_gratuit.php');
+
+    // REQUETE POUR SAVOIR SI LE CLIENT A UNE ADRESSE PAR DEFAUT
+
+    $adrpardef = $bdd->prepare("SELECT * FROM adresseclient WHERE id_client = ? AND adressedefaut_adresseclient = 1 LIMIT 1");
+    $adrpardef->execute(array($id_client));
+    $adrexist = $adrpardef->rowCount();
+  }
+}
 ?>
 
 <?php include './inc/header.php' ?>
@@ -41,7 +53,9 @@ $adrexist = $adrpardef->rowCount();
          }
     	 ?>
 
-      <?php if($adrexist == 1) { ?>
+      <?php if(isset($_SESSION['id_client'])){
+      if($panierexist != 0){ //Si le panier n'est pas vide
+      if($adrexist == 1) { ?>
       <div class="row">
         <div class="col-md-6 col-sm-6" style="border-right: solid;">
         <?php } ?>
@@ -124,10 +138,9 @@ $adrexist = $adrpardef->rowCount();
         <h3>Option de livraison</h3>
 
         <form id="form" method="POST" action="#">
-          <input type="radio" class="" name="option_livr" value="0" checked/> <label>Livraison Standard (GRATUIT)</label>
+          <input type="radio" class="" name="option_livr" value="Standard" checked/> <label>Livraison Standard (GRATUIT)</label>
           <br>
-          <input type="radio" class="" name="option_livr" value="1"/> <label>Livraison 24h (10€)</label>
-        </form>
+          <input type="radio" class="" name="option_livr" value="24h"/> <label>Livraison 24h (10€)</label>
 
       </div>
     </div>
@@ -148,7 +161,6 @@ $adrexist = $adrpardef->rowCount();
               <label>Ou</label>
             </li>
             <li>
-              <form id="form" method="POST" action="#">
                 <button name="achat_gratuit" class="btn secondary payment-method payPal" style="background-image: url(&quot;images/gratuit.png&quot;);">GRATUIT</button>
               </form>
             </li>
@@ -160,7 +172,11 @@ $adrexist = $adrpardef->rowCount();
         <img alt="" src="https://assets.asosservices.com/asos-finance/images/marketing/fr/single.png">
       </div>
     </div>
-    <?php } ?>
+  <?php } } else { //SI LE PANIER EST VIDE ?>
+    <h3><a href="nouveaute.php">Vous ne pouvez pas commander si votre panier est vide !</a></h3>
+  <?php } } else { //SI L'UTILISATEUR N'EST PAS CO ?>
+    <h3><a href="connexion.php">Connectez-vous pour acceder à cette page !</a></h3>
+  <?php } ?>
 
 </article>
 </div>

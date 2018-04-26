@@ -1,10 +1,16 @@
 <?php
+$host = 'localhost';
+$dbname = 'shop';
+$user = 'root';
+$mdp = '';
+
 session_start();
 try
 
+
 {
 
-	$bdd = new PDO('mysql:host=localhost;dbname=shop;charset=utf8', 'root', '');
+	$bdd = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8', ''.$user.'', ''.$mdp.'');
 
 }
 

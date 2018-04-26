@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 26 Avril 2018 à 16:53
+-- Généré le :  Jeu 26 Avril 2018 à 22:20
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -70,7 +70,7 @@ CREATE TABLE `adresseclient` (
 --
 
 INSERT INTO `adresseclient` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`, `adressedefaut_adresseclient`, `idclient_adressedefaut_adresseclient`) VALUES
-(16, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
+(18, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -159,14 +159,22 @@ CREATE TABLE `commande` (
   `totalTVA` float NOT NULL DEFAULT '20',
   `fraisportHT` float NOT NULL,
   `id_client` int(11) NOT NULL,
-  `id_adresse_facturation` int(11) NOT NULL,
+  `id_adresse_facturation` int(11) DEFAULT NULL,
   `id_adresse_livraison` int(11) NOT NULL,
-  `num_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type_reglement` int(11) NOT NULL,
+  `type_livraison` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `num_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `methode_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `liste_parametres_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commande`
+--
+
+INSERT INTO `commande` (`id_commande`, `datetime_commande`, `etat_commande`, `totalTTC`, `totalHT`, `totalTVA`, `fraisportHT`, `id_client`, `id_adresse_facturation`, `id_adresse_livraison`, `type_livraison`, `num_commande`, `num_facture`, `type_reglement`, `methode_reglement`, `liste_parametres_reglement`) VALUES
+(6, '2018-04-26 23:32:01', 0, 60, 60, 20, 0, 1, NULL, 18, 'Standard', 'COM6', 'FACT6', 'GRATUIT', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,13 +240,6 @@ CREATE TABLE `panier` (
   `id_client` int(11) NOT NULL,
   `id_produit` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `panier`
---
-
-INSERT INTO `panier` (`id_panier`, `id_client`, `id_produit`) VALUES
-(34, 1, 55);
 
 -- --------------------------------------------------------
 
@@ -380,7 +381,7 @@ ALTER TABLE `client`
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`id_commande`,`num_commande`),
+  ADD PRIMARY KEY (`id_commande`),
   ADD KEY `id_client` (`id_client`);
 
 --
@@ -454,7 +455,7 @@ ALTER TABLE `adressearchive`
 -- AUTO_INCREMENT pour la table `adresseclient`
 --
 ALTER TABLE `adresseclient`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
@@ -474,7 +475,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `liaisonproduit`
 --
@@ -494,7 +495,7 @@ ALTER TABLE `marques`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 --
 -- AUTO_INCREMENT pour la table `photoproduit`
 --

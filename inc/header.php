@@ -293,11 +293,11 @@
          <?php
            if (isset($_SESSION['id_client'])) { ?>
                <li>
-                 <a href="#" class="button big fit">Mon compte</a></li>
-               <li><a href="logout.php" class="button big fit">Déconnexion</a></li>
+                 <a href="profil.php" class="">Mon compte</a></li>
+               <li><a href="logout.php" class="">Déconnexion</a></li>
            <?php } else { ?>
-               <li><a href="connexion.php" class="button big fit">Connexion</a></li>
-               <li><a href="inscription.php" class="button big fit">Inscription</a></li>
+               <li><a href="connexion.php" class="">Connexion</a></li>
+               <li><a href="inscription.php" class="">Inscription</a></li>
            <?php } ?>
        </ul>
    </section>

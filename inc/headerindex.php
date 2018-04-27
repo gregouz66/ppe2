@@ -76,7 +76,7 @@
                   </a>
                 </li>
 
-                <li class="li_icon_header">
+                <!-- <li class="li_icon_header">
                   <a type="a" href="#" icon="heartUnfilled" data-testid="savedItemsIcon" class="a_icon_header a2_icon_header" aria-label="Articles Sauvegardés">
                     <span class="span_icon_header">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18">
@@ -84,11 +84,11 @@
                       </svg>
                     </span>
                   </a>
-                </li>
+                </li> -->
 
                 <li class="li_icon_header">
                   <div>
-                    <a type="a" href="#" icon="bagUnfilled" data-testid="bagIcon" class="a_icon_header a2_icon_header" aria-label="Panier">
+                    <a type="a" href="monpanier.php" icon="bagUnfilled" data-testid="bagIcon" class="a_icon_header a2_icon_header" aria-label="Panier">
                       <span class="span_icon_header">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                           <path fill="#FFF" fill-rule="nonzero" d="M18 17.987V7H2v11l16-.013zM4.077 5A5.996 5.996 0 0 1 10 0c2.973 0 5.562 2.162 6.038 5H20v14.986L0 20V5h4.077zm9.902-.005C13.531 3.275 11.86 2 10 2 8.153 2 6.604 3.294 6.144 4.995c.92 0 7.654.03 7.835 0z"></path>
@@ -100,7 +100,7 @@
                 </li>
 
                 <?php
-                  if(isset($_SESSION['id_utilisateur']) OR isset($_SESSION['id_client'])) {
+                  if(isset($_SESSION['id_client'])) {
                   ?>
                 <li class="li_icon_header"> <div>
                   <a type="a" href="logout.php" icon="bagUnfilled" data-testid="bagIcon" class="a_icon_header a2_icon_header" aria-label="Panier">
@@ -162,7 +162,7 @@
 
               <nav class="navbar navbar-inverse bg-inverse" style="display: inline-block; width: 100%; height: 4.72em;" data-testid="primarynav-large-men">
 
-                <?php if(isset($_SESSION['administrateur']) AND $_SESSION['administrateur'] > 0) { ?>
+                <?php if(isset($_SESSION['administrateur']) AND $_SESSION['administrateur'] > 0) {?>
                 <div style="margin-left: auto; margin-right: auto; width: 52em;">
                 <?php } else { ?> <div style="margin-left: auto; margin-right: auto; width: 45em;"> <?php } ?>
 
@@ -298,13 +298,13 @@
        <?php } ?>
 
          <?php
-           if (isset($_SESSION['id_utilisateur']) OR isset($_SESSION['id_client'])) { ?>
+           if (isset($_SESSION['id_client'])) { ?>
                <li>
-                 <a href="#" class="button big fit">Mon compte</a></li>
-               <li><a href="logout.php" class="button big fit">Déconnexion</a></li>
+                 <a href="profil.php" class="">Mon compte</a></li>
+               <li><a href="logout.php" class="">Déconnexion</a></li>
            <?php } else { ?>
-               <li><a href="connexion.php" class="button big fit">Connexion</a></li>
-               <li><a href="inscription.php" class="button big fit">Inscription</a></li>
+               <li><a href="connexion.php" class="">Connexion</a></li>
+               <li><a href="inscription.php" class="">Inscription</a></li>
            <?php } ?>
        </ul>
    </section>

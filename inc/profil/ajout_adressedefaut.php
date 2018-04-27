@@ -1,6 +1,6 @@
 <?php
 //Formulaire infos livraisons
-if (isset($_POST['valider'])){
+if (isset($_POST['ajout_livr'])){
   $id_client = $_SESSION['id_client'];
   $Adresse=htmlentities(trim($_POST['Adresse']));
   $Prenom_livr=htmlentities(trim($_POST['Prenom_livr']));
@@ -26,6 +26,7 @@ if (isset($_POST['valider'])){
       $result_livr = $AdresseLivraison->rowCount();
 
       if($result_livr == 1){
+        header('Location: profil.php');
         $errors1[] = "L'adresse de livraison a été ajouté par defaut avec succès !";
       } else {
         $errors[] = "Erreur lors de l'ajout de l'adresse de livraison !";

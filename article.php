@@ -4,7 +4,7 @@
 // RECUPERATION PRODUIT
   if (isset($_GET['id'])) { //SI UN ID A ETE SELECTIONNE
     $id = $_GET['id'];
-    $req = $bdd->prepare('SELECT * FROM produits WHERE id_produit = ?');
+    $req = $bdd->prepare('SELECT * FROM produits WHERE id_produit = ? LIMIT 1');
     $req->execute(array($id));
 
   // On récupère le resultat

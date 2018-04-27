@@ -60,6 +60,10 @@
                       include ('admin/activenav/active3.php');
                       break;
 
+                      case '6':
+                      include ('admin/activenav/active4.php');
+                      break;
+
                       default:
                       include ('admin/activenav/active1.php');
                       break;
@@ -163,6 +167,10 @@
 
                 case '5':
                 include ('admin/editproduit.php');
+                break;
+
+                case '6':
+                include ('admin/affichcommande.php');
                 break;
 
                 default:

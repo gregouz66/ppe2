@@ -1,6 +1,6 @@
 <?php
 
-$req = $bdd->prepare('SELECT * FROM commande ');
+$req = $bdd->prepare('SELECT * FROM commande');
 $req->execute();
 // On récupère le resultat
 $result = $req->fetchAll();
@@ -21,19 +21,19 @@ $result = $req->fetchAll();
             // on affiche les titres
             echo '<tr>';
 
-            echo '<th>ID</th>';
+            echo '<th>Date</th>';
 
-            echo '<th>IP</th>';
+            echo '<th>Etat</th>';
 
-            echo '<th>Adresse MAC</th>';
+            echo '<th>total TTC</th>';
 
-            echo '<th>Nom de la machine</th>';
+            echo '<th>Client</th>';
 
-            echo '<th>Host name</th>';
+            echo '<th>Num. commande</th>';
 
-            echo '<th>Libellé de la machine</th>';
+            echo '<th>Num. facture</th>';
 
-            echo '<th>ID de la salle</th>';
+            echo '<th>Afficher</th>';
 
 
         // lecture et affichage des résultats sur 2 colonnes, 1 résultat par ligne.
@@ -42,19 +42,21 @@ $result = $req->fetchAll();
 
             echo '<tr>';
 
-            echo '<td>'.$row["id_machine"].'</td>';
+            $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $row["datetime_commande"]);
+            $date = $myDateTime->format('d-m-Y');
+            echo '<td>'.$date.'</td>';
 
-            echo '<td>'.$row["ip_machine"].'</td>';
+            echo '<td>'.$row["etat_commande"].'</td>';
 
-            echo '<td>'.$row["mac_machine"].'</td>';
+            echo '<td>'.$row["totalTTC"].'</td>';
 
-            echo '<td>'.$row["nom_machine"].'</td>';
+            echo '<td>'.$row["id_client"].'</td>';
 
-            echo '<td>'.$row["host_name_machine"].'</td>';
+            echo '<td>'.$row["num_commande"].'</td>';
 
-            echo '<td>'.$row["libelle_machine"].'</td>';
+            echo '<td>'.$row["num_facture"].'</td>';
 
-            echo '<td>'.$row["id_salle"].'</td>';
+            echo '<td><a href="admin.php?selector=6&com='. $row["id_commande"].'"><button type="submit" class="btn btn-warning btnsuppr">Afficher</button></a></td>';
 
             echo '</tr>';
 

@@ -75,6 +75,30 @@
 
     		<span><strong>Made in france</strong></span>
 
+
+    	</div>
+
+    	<!-- div du prix de l'article -->
+
+        <?php if (!empty($row['promo_produit'])) { ?>
+          <div class="prix-article-promo">
+          <h4 class="ancien_prix"><?php echo $prix; ?> € </h4>
+          <h4 class="prix_promo"><?php echo $promoprix; ?> € </h4>
+        <?php } else { ?>
+          <div class="prix-article">
+          <h4><?php echo $row['prixunitaireHT_produit']; ?> € </h4>
+        <?php } ?>
+
+    	</div>
+
+      <?php } } ?>
+
+	</div>
+  <?php ?>
+  <div class="lecom">
+      <h1>Laissez nous un commentaire :</h1>
+      <form class="lecommentaire" action="index.html" method="post">
+        <input type="text" name="titre" placeholder="titre du commentaire">
         <div class="vote">
           <span><strong>Vote : </strong><ul class="note_produit">
             <li>
@@ -101,33 +125,13 @@
           </ul>
         </span>
         </div>
-    	</div>
-
-    	<!-- div du prix de l'article -->
-
-        <?php if (!empty($row['promo_produit'])) { ?>
-          <div class="prix-article-promo">
-          <h4 class="ancien_prix"><?php echo $prix; ?> € </h4>
-          <h4 class="prix_promo"><?php echo $promoprix; ?> € </h4>
-        <?php } else { ?>
-          <div class="prix-article">
-          <h4><?php echo $row['prixunitaireHT_produit']; ?> € </h4>
-        <?php } ?>
-
-    	</div>
-
-      <?php } } ?>
-
-	</div>
-  <?php ?>
-  <div class="lecom">
-      <h1>Laissez nous un commentaire :</h1>
-      <form class="lecommentaire" action="index.html" method="post">
-        <input type="text" name="titre" placeholder="titre du commentaire">
         <textarea name="comment" rows="6" cols="80"></textarea>
         <input class ="boutonvalider" type="submit" name="commentez" value="poster"/>
       </form>
   </div>
+
+
+
   <h2>avis et commentaires :</h2></br>
   <div class="commentaires">
   <?php     if($resultavis) {

@@ -16,6 +16,14 @@
   // On récupère le resultat
   $resultphoto = $reqphoto->fetch();
   $photopardefaut = $resultphoto['photo_produit'];
+
+  $reqavis = $bdd->prepare('SELECT * FROM avis WHERE id_produit = ?');
+  $reqavis->execute(array($id));
+  $resultavis = $reqavis->fetchAll();
+
+
+
+
 ?>
 
 <?php include ("inc/header.php"); ?>
@@ -111,8 +119,34 @@
       <?php } } ?>
 
 	</div>
+  <?php ?>
+  <div class="lecom">
+      <h1>Laissez nous un commentaire :</h1>
+      <form class="lecommentaire" action="index.html" method="post">
+        <input type="text" name="titre" placeholder="titre du commentaire">
+        <textarea name="comment" rows="6" cols="80"></textarea>
+        <input class ="boutonvalider" type="submit" name="commentez" value="poster"/>
+      </form>
+  </div>
+  <h2>avis et commentaires :</h2></br>
+  <div class="commentaires">
+  <?php     if($resultavis) {
+      foreach($resultavis as $row) {
 
+        $requseravis = $bdd->prepare('SELECT * FROM client WHERE id_client = (SELECT id_client FROM avis WHERE id_client = ?)');
+        $requseravis->execute(array($row['id_client']));
+        $resultoui = $requseravis->fetch();
 
+    ?>
+
+<div class="comentaire">
+  <h3><?php echo $row['titre_avis'] ?></h3>
+  <p><strong><?php echo $resultoui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?></p>
+<p><?php echo $row['description_avis'] ?></p>
+
+</div>
+<?php }} ?>
+</div>
 </article>
 
 

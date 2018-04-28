@@ -34,9 +34,12 @@ if(isset($_POST['ajout_produit'])) {
                   //Vérifie que le prix et la promo contient seulement des chiffres
                   if (is_numeric($prix)){
 
+                  $prixdepart = $prix;
+                  $reduc = $prix*$promo/100;
+                  $prixfinal = $prix-$reduc;
                   // Création du produit SANS CODE PRODUIT dans la bdd
-                  $creationproduit = $bdd->prepare("INSERT INTO produits(libelle_marque, quantite_produit, nom_produit, prixunitaireHT_produit, promo_produit, description_produit, couleur_produit, libelle_categorie) VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
-                  $creationproduit->execute(array($marque, $quantite, $name, $prix, $promo, $description, $couleur, $categorie));
+                  $creationproduit = $bdd->prepare("INSERT INTO produits(libelle_marque, quantite_produit, nom_produit, prixdepartHT_produit, prixunitaireHT_produit, promo_produit, description_produit, couleur_produit, libelle_categorie) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                  $creationproduit->execute(array($marque, $quantite, $name,$prixdepart , $prixfinal, $promo, $description, $couleur, $categorie));
                   $creationprod = $creationproduit->rowCount();
 
                   if($creationprod == 1){
@@ -90,6 +93,7 @@ if(isset($_POST['ajout_produit'])) {
                 }
                 } else {
                   $errors[] = "Erreur lors de la création du produit !";
+                  var_dump($creationproduit->errorInfo());
                 }
                 } else {
                   $errors[] = "Le prix ne contient pas que des chiffres !";

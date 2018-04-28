@@ -70,11 +70,11 @@ $result_marq = $reqmarq->fetchAll();
 
             echo '<th>Nom du produit</th>';
 
-            echo '<th>Prix (€)</th>';
+            echo '<th>Prix départ(€)</th>';
 
 						echo '<th>Promo (%)</th>';
 
-						echo '<th>Couleur</th>';
+						echo '<th>Prix final(€)</th>';
 
             echo '<th>Catégorie</th>';
 
@@ -96,11 +96,11 @@ $result_marq = $reqmarq->fetchAll();
 
             echo '<td>'.$row["nom_produit"].'</td>';
 
-            echo '<td>'.$row["prixunitaireHT_produit"].'</td>';
+            echo '<td>'.$row["prixdepartHT_produit"].'</td>';
 
 						echo '<td>'.$row["promo_produit"].'</td>';
 
-						echo '<td>'.strtoupper($row["couleur_produit"]).'</td>';
+						echo '<td>'.$row["prixunitaireHT_produit"].'</td>';
 
             echo '<td>'.strtoupper($row['libelle_categorie']).'</td>';
 

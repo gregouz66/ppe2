@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1
+-- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Sam 28 Avril 2018 à 19:32
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Client :  localhost
+-- Généré le :  Dim 29 Avril 2018 à 18:33
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,27 +28,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adressearchive` (
   `id_adresseclient` int(11) NOT NULL,
-  `id_client` int(11) NOT NULL,
   `libelle_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nomcomplet_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `societe_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `voie_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `complement_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `lieuditbp_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `societe_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `voie_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `complement_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `lieuditbp_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `codepostal_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `etatprovince_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ville_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pays_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `typeadresse_adresseclient` int(11) DEFAULT NULL,
-  `idclient_type_adresseclient` int(11) DEFAULT NULL
+  `pays_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `adressearchive`
---
-
-INSERT INTO `adressearchive` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`) VALUES
-(19, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -80,7 +70,8 @@ CREATE TABLE `adresseclient` (
 --
 
 INSERT INTO `adresseclient` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`, `adressedefaut_adresseclient`, `idclient_adressedefaut_adresseclient`) VALUES
-(21, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
+(16, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL),
+(18, 3, '8 rue du carignan', 'antoine tadiotto', '', NULL, NULL, NULL, '66430', 'Occitanie', 'Bompas', 'France', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -98,6 +89,14 @@ CREATE TABLE `avis` (
   `description_avis` varchar(1000) NOT NULL,
   `note_avis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `avis`
+--
+
+INSERT INTO `avis` (`id_avis`, `idclient_idproduit_avis`, `id_produit`, `id_client`, `date_avis`, `titre_avis`, `description_avis`, `note_avis`) VALUES
+(1, 1, 45, 1, '2018-04-03', 'super !', 'huifhuizhui\r\n fizef ioezp\r\n fuizeo fhoizhuo \r\nfzejifoh€hozh', 4),
+(3, 3, 45, 3, '2018-04-03', 'Pas mal', 'j\'ai bien oui oui mais oui\r\noui\r\noui', 2);
 
 -- --------------------------------------------------------
 
@@ -122,7 +121,10 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id_categorie`, `id_categorie_parent`, `libelle_categorie`, `libelle_par_categorie`, `photo_categorie`, `libelle_id_categorie`, `ordre_affichage`, `cle_affichage`) VALUES
 (1, 1, 'chaussures', 'chaussures', '...', '1', 1, 1),
-(2, 2, 'tshirt', 'tshirt', '', '2', 2, 2);
+(2, 2, 'tshirt', 'tshirt', '', '2', 2, 2),
+(3, 3, 'Pulls', 'Pulls', '', '3', 3, 3),
+(4, 4, 'Jeans', 'Jeans', '', '4', 4, 4),
+(5, 5, 'Joggings', 'Joggings', '', '5', 5, 5);
 
 -- --------------------------------------------------------
 
@@ -142,6 +144,7 @@ CREATE TABLE `client` (
   `id_question` int(11) DEFAULT NULL,
   `reponse` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `datecreation_client` date NOT NULL,
+  `anonyme` int(11) NOT NULL DEFAULT '0',
   `administrateur` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -149,9 +152,10 @@ CREATE TABLE `client` (
 -- Contenu de la table `client`
 --
 
-INSERT INTO `client` (`id_client`, `email_client`, `nom_affichage`, `mot_de_passe`, `civilite`, `nom_client`, `prenom_client`, `telephone_client`, `id_question`, `reponse`, `datecreation_client`, `administrateur`) VALUES
-(1, 'gregory.cascales@gmail.com', 'Gr&eacute;gory', 'ffc76d04fb1121b11fffcc4f1692317d6d1b3450', NULL, 'Cascales', 'Gr&eacute;gory', '', NULL, NULL, '2018-04-23', 3),
-(2, 'admin@admin.fr', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, 'admin', 'admin', NULL, NULL, NULL, '2018-04-23', 3);
+INSERT INTO `client` (`id_client`, `email_client`, `nom_affichage`, `mot_de_passe`, `civilite`, `nom_client`, `prenom_client`, `telephone_client`, `id_question`, `reponse`, `datecreation_client`, `anonyme`, `administrateur`) VALUES
+(1, 'gregory.cascales@gmail.com', 'Gr&eacute;gory', 'ffc76d04fb1121b11fffcc4f1692317d6d1b3450', NULL, 'Cascales', 'Gr&eacute;gory', NULL, NULL, NULL, '2018-04-23', 0, 3),
+(2, 'admin@admin.fr', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, 'admin', 'admin', NULL, NULL, NULL, '2018-04-23', 0, 3),
+(3, 'antoine.tadiotto@gmail.com', 'antoine', '0659897ec921cf93061ed73f261bcfdb7cf90674', NULL, 'tadiotto', 'antoine', NULL, NULL, NULL, '2018-04-26', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -165,24 +169,17 @@ CREATE TABLE `commande` (
   `etat_commande` float NOT NULL,
   `totalTTC` float NOT NULL,
   `totalHT` float NOT NULL,
+  `totalTVA` float NOT NULL DEFAULT '20',
   `fraisportHT` float NOT NULL,
   `id_client` int(11) NOT NULL,
-  `id_adresse_facturation` int(11) DEFAULT NULL,
+  `id_adresse_facturation` int(11) NOT NULL,
   `id_adresse_livraison` int(11) NOT NULL,
-  `type_livraison` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `num_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `num_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `type_reglement` int(11) NOT NULL,
   `methode_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `liste_parametres_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `commande`
---
-
-INSERT INTO `commande` (`id_commande`, `datetime_commande`, `etat_commande`, `totalTTC`, `totalHT`, `fraisportHT`, `id_client`, `id_adresse_facturation`, `id_adresse_livraison`, `type_livraison`, `num_commande`, `num_facture`, `type_reglement`, `methode_reglement`, `liste_parametres_reglement`) VALUES
-(7, '2018-04-27 14:58:50', 0, 60, 60, 0, 1, NULL, 19, 'Standard', 'COM7', 'FACT7', 'GRATUIT', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -235,7 +232,11 @@ CREATE TABLE `marques` (
 --
 
 INSERT INTO `marques` (`id_marque`, `libelle_marque`, `photo_marque`, `libelle_id_marque`) VALUES
-(1, 'Nike', '', 'Nike');
+(1, 'Nike', '', 'Nike'),
+(2, 'Adidas', '', 'Adidas'),
+(3, 'Ralph Lauren', '', 'Ralph Lauren'),
+(4, 'Le coq sportif', '', 'le coq sportif'),
+(6, 'tommy hilfiger', '', 'tommy hilfiger');
 
 -- --------------------------------------------------------
 
@@ -254,7 +255,9 @@ CREATE TABLE `panier` (
 --
 
 INSERT INTO `panier` (`id_panier`, `id_client`, `id_produit`) VALUES
-(46, 1, 55);
+(34, 1, 55),
+(35, 3, 45),
+(36, 3, 55);
 
 -- --------------------------------------------------------
 
@@ -282,7 +285,16 @@ CREATE TABLE `photoproduit` (
 INSERT INTO `photoproduit` (`id_photoproduit`, `photo_produit`, `id_produit`, `role_photoproduit`, `id_role_photoproduit`, `pardefaut_photoproduit`, `id_pardefaut_photoproduit`, `numero_photoproduit`, `id_numero_photoproduit`, `role_id_produit`) VALUES
 (1, 'images/produits/cortez-noir.jpg', 45, 1, 1, 1, 1, 1, 1, 1),
 (2, 'images/produits/airmax-stevens-04.jpg', 55, NULL, NULL, 1, NULL, NULL, NULL, NULL),
-(3, 'images/produits/BCKGND-IPHONE.png', 56, NULL, NULL, 1, NULL, NULL, NULL, NULL);
+(3, 'images/produits/-NI122S079-G11-default-10.jpg', 56, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(4, 'images/produits/417uiTHvyJL.jpg', 57, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(5, 'images/produits/C77124-01-standard.jpg', 58, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(6, 'images/produits/INTOTO7-Ralph-Lauren-Polo-Big-Pony-Short-Sleeve-TShirt-White2.jpg', 59, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(7, 'images/produits/chaussures-homme-baskets-le-coq-sportif-courtset-s.jpg', 60, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(8, 'images/produits/tommy-hilfiger-slim-scanton-jeans-homme-taille-3.jpg', 61, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(9, 'images/produits/ty-ly-chargement-1-.jpg', 62, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(10, 'images/produits/chaussure-remilly-mode-homme-2-tons-le-coq-sportif-bleu.jpg', 63, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(11, 'images/produits/nike-futura-t-shirt-rot-1720.jpg', 64, NULL, NULL, 1, NULL, NULL, NULL, NULL),
+(12, 'images/produits/pull-ralph-lauren-polo-homme-col-chemise.jpg', 65, NULL, NULL, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -312,7 +324,16 @@ CREATE TABLE `produits` (
 INSERT INTO `produits` (`id_produit`, `libelle_categorie`, `libelle_marque`, `code_produit`, `nom_produit`, `description_produit`, `prixdepartHT_produit`, `promo_produit`, `prixunitaireHT_produit`, `quantite_produit`, `quantitelimite_produit`, `couleur_produit`) VALUES
 (45, 'chaussures', 'Nike', 'NIKCHA45', 'old vintage 90\'s', 'description', 50, 10, 45, 20, 20, 'BLEU'),
 (55, 'tshirt', 'Nike', 'NIKTSH55', 'test', 'test', 15, 0, 15, 10, NULL, 'Beige'),
-(56, 'tshirt', 'Nike', 'NIKTSH56', 'test', 'test', 80, 0, 80, 10, NULL, 'Beige');
+(56, 'Pulls', 'Nike', 'NIKPUL56', 'pull gris rouge bleu nike', 'magnifique pull', 70, 0, 70, 9, NULL, 'Gris'),
+(57, 'chaussures', 'tommy hilfiger', 'TOMCHA57', 'chaussure tommy hilfiger bleu', 'superbe chaussure oui', 100, 15, 85, 60, NULL, 'Bleu'),
+(58, 'chaussures', 'Adidas', 'ADICHA58', 'adidas original stansmith blanc', 'stansmith blanche oui', 100, 0, 100, 45, NULL, 'Blanc'),
+(59, 'tshirt', 'Ralph Lauren', 'RALTSH59', 'polo ralph lauren blanc', 'oui polo ralph lauren', 80, 0, 80, 80, NULL, 'Blanc'),
+(60, 'chaussures', 'Le coq sportif', 'LE CHA60', 'chaussure blanche le coq sportif', 'superbe chaussure blanche le coq sportif', 100, 0, 100, 700, NULL, 'Blanc'),
+(61, 'Jeans', 'tommy hilfiger', 'TOMJEA61', 'jean slim tommy hilfiger homme', 'jean homme tommy hilfiger made in france', 75, 5, 71.25, 55, NULL, 'Bleu'),
+(62, 'Pulls', 'Nike', 'NIKPUL62', 'pull nike rouge', 'pull rouge nike 100 % cotton made in france', 75, 0, 75, 555, NULL, 'Rouge'),
+(63, 'chaussures', 'Le coq sportif', 'LE CHA63', 'chaussure le coq sportif bleue', 'chaussure le coq sportif bleue douce', 120, 0, 120, 66, NULL, 'Bleu'),
+(64, 'tshirt', 'Nike', 'NIKTSH64', 't shirt rouge nike', 't-shirt rouge nike', 20, 0, 20, 777, NULL, 'Rouge'),
+(65, 'Pulls', 'Ralph Lauren', 'RALPUL65', 'pull ralph lauren col chemise homme', 'polo ralph lauren col chemise magnifique oui', 55, 0, 55, 8, NULL, 'Bleu');
 
 -- --------------------------------------------------------
 
@@ -364,8 +385,7 @@ CREATE TABLE `voteavis` (
 -- Index pour la table `adressearchive`
 --
 ALTER TABLE `adressearchive`
-  ADD PRIMARY KEY (`id_adresseclient`),
-  ADD UNIQUE KEY `id_client` (`id_client`);
+  ADD PRIMARY KEY (`id_adresseclient`);
 
 --
 -- Index pour la table `adresseclient`
@@ -399,7 +419,7 @@ ALTER TABLE `client`
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`id_commande`),
+  ADD PRIMARY KEY (`id_commande`,`num_commande`),
   ADD KEY `id_client` (`id_client`);
 
 --
@@ -468,32 +488,32 @@ ALTER TABLE `voteavis`
 -- AUTO_INCREMENT pour la table `adressearchive`
 --
 ALTER TABLE `adressearchive`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `adresseclient`
 --
 ALTER TABLE `adresseclient`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
 ALTER TABLE `avis`
-  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `liaisonproduit`
 --
@@ -508,22 +528,22 @@ ALTER TABLE `lignecde`
 -- AUTO_INCREMENT pour la table `marques`
 --
 ALTER TABLE `marques`
-  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT pour la table `photoproduit`
 --
 ALTER TABLE `photoproduit`
-  MODIFY `id_photoproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_photoproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
@@ -537,12 +557,6 @@ ALTER TABLE `voteavis`
 --
 -- Contraintes pour les tables exportées
 --
-
---
--- Contraintes pour la table `adressearchive`
---
-ALTER TABLE `adressearchive`
-  ADD CONSTRAINT `fk_idclient` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
 --
 -- Contraintes pour la table `adresseclient`

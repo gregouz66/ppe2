@@ -56,7 +56,7 @@ if(isset($_POST['ajout_produit'])) {
                   // Création de l'image du produit dans BDD
                   $creationimage = $bdd->prepare("INSERT INTO photoproduit(photo_produit, id_produit, pardefaut_photoproduit) VALUES(?, ?, ?)");
                   $creationimage->execute(array($linkimg, $id, 1));
-                  var_dump($creationimage->errorInfo());
+        
                   $creationimg = $creationimage->rowCount();
 
                   if($creationimg == 1){

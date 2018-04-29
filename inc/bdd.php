@@ -2,7 +2,7 @@
 $host = 'localhost';
 $dbname = 'shop';
 $user = 'root';
-$mdp = '';
+$mdp = 'root';
 
 session_start();
 try

@@ -1,6 +1,6 @@
 <?php
 
-$req = $bdd->prepare('SELECT * FROM commande');
+$req = $bdd->prepare('SELECT * FROM commande ORDER BY id_commande DESC');
 $req->execute();
 // On récupère le resultat
 $result = $req->fetchAll();
@@ -50,7 +50,11 @@ $result = $req->fetchAll();
 
             echo '<td>'.$row["totalTTC"].'</td>';
 
-            echo '<td>'.$row["id_client"].'</td>';
+            $req_cli = $bdd->prepare('SELECT * FROM client WHERE id_client = ? LIMIT 1');
+            $req_cli->execute(array($row["id_client"]));
+            // On récupère le resultat
+            $result_cli = $req_cli->fetch();
+            echo '<td>'.$result_cli['prenom_client'].' '.$result_cli['nom_client'].'</td>';
 
             echo '<td>'.$row["num_commande"].'</td>';
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Client :  localhost
--- Généré le :  Dim 29 Avril 2018 à 18:33
--- Version du serveur :  5.7.11
--- Version de PHP :  5.6.18
+-- Client :  127.0.0.1
+-- Généré le :  Lun 30 Avril 2018 à 07:37
+-- Version du serveur :  5.7.14
+-- Version de PHP :  5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,17 +28,27 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adressearchive` (
   `id_adresseclient` int(11) NOT NULL,
+  `id_client` int(11) NOT NULL,
   `libelle_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nomcomplet_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `societe_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `voie_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `complement_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `lieuditbp_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `societe_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `voie_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `complement_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lieuditbp_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `codepostal_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `etatprovince_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ville_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pays_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `pays_adresseclient` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `typeadresse_adresseclient` int(11) DEFAULT NULL,
+  `idclient_type_adresseclient` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `adressearchive`
+--
+
+INSERT INTO `adressearchive` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`) VALUES
+(22, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -70,8 +80,8 @@ CREATE TABLE `adresseclient` (
 --
 
 INSERT INTO `adresseclient` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`, `adressedefaut_adresseclient`, `idclient_adressedefaut_adresseclient`) VALUES
-(16, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL),
-(18, 3, '8 rue du carignan', 'antoine tadiotto', '', NULL, NULL, NULL, '66430', 'Occitanie', 'Bompas', 'France', NULL, NULL, 1, NULL);
+(21, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL),
+(22, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,7 +154,6 @@ CREATE TABLE `client` (
   `id_question` int(11) DEFAULT NULL,
   `reponse` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `datecreation_client` date NOT NULL,
-  `anonyme` int(11) NOT NULL DEFAULT '0',
   `administrateur` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -152,10 +161,10 @@ CREATE TABLE `client` (
 -- Contenu de la table `client`
 --
 
-INSERT INTO `client` (`id_client`, `email_client`, `nom_affichage`, `mot_de_passe`, `civilite`, `nom_client`, `prenom_client`, `telephone_client`, `id_question`, `reponse`, `datecreation_client`, `anonyme`, `administrateur`) VALUES
-(1, 'gregory.cascales@gmail.com', 'Gr&eacute;gory', 'ffc76d04fb1121b11fffcc4f1692317d6d1b3450', NULL, 'Cascales', 'Gr&eacute;gory', NULL, NULL, NULL, '2018-04-23', 0, 3),
-(2, 'admin@admin.fr', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, 'admin', 'admin', NULL, NULL, NULL, '2018-04-23', 0, 3),
-(3, 'antoine.tadiotto@gmail.com', 'antoine', '0659897ec921cf93061ed73f261bcfdb7cf90674', NULL, 'tadiotto', 'antoine', NULL, NULL, NULL, '2018-04-26', 0, 0);
+INSERT INTO `client` (`id_client`, `email_client`, `nom_affichage`, `mot_de_passe`, `civilite`, `nom_client`, `prenom_client`, `telephone_client`, `id_question`, `reponse`, `datecreation_client`, `administrateur`) VALUES
+(1, 'gregory.cascales@gmail.com', 'Gr&eacute;gory', 'ffc76d04fb1121b11fffcc4f1692317d6d1b3450', NULL, 'Cascales', 'Gr&eacute;gory', '', NULL, NULL, '2018-04-23', 3),
+(2, 'admin@admin.fr', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', NULL, 'admin', 'admin', NULL, NULL, NULL, '2018-04-23', 3),
+(3, 'antoine.tadiotto@gmail.com', 'antoine', '0659897ec921cf93061ed73f261bcfdb7cf90674', NULL, 'tadiotto', 'antoine', NULL, NULL, NULL, '2018-04-26', 0);
 
 -- --------------------------------------------------------
 
@@ -169,17 +178,26 @@ CREATE TABLE `commande` (
   `etat_commande` float NOT NULL,
   `totalTTC` float NOT NULL,
   `totalHT` float NOT NULL,
-  `totalTVA` float NOT NULL DEFAULT '20',
   `fraisportHT` float NOT NULL,
   `id_client` int(11) NOT NULL,
-  `id_adresse_facturation` int(11) NOT NULL,
+  `id_adresse_facturation` int(11) DEFAULT NULL,
   `id_adresse_livraison` int(11) NOT NULL,
-  `num_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `type_reglement` int(11) NOT NULL,
+  `type_livraison` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `num_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `num_facture` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `methode_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `liste_parametres_reglement` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `commande`
+--
+
+INSERT INTO `commande` (`id_commande`, `datetime_commande`, `etat_commande`, `totalTTC`, `totalHT`, `fraisportHT`, `id_client`, `id_adresse_facturation`, `id_adresse_livraison`, `type_livraison`, `num_commande`, `num_facture`, `type_reglement`, `methode_reglement`, `liste_parametres_reglement`) VALUES
+(7, '2018-04-27 14:58:50', 0, 60, 60, 0, 1, NULL, 19, 'Standard', 'COM7', 'FACT7', 'GRATUIT', '1', NULL),
+(8, '2018-04-30 09:25:56', 0, 15, 15, 0, 2, NULL, 20, 'Standard', 'COM8', 'FACT8', 'GRATUIT', '1', NULL),
+(9, '2018-04-30 09:33:56', 0, 195, 195, 0, 2, NULL, 22, 'Standard', 'COM9', 'FACT9', 'GRATUIT', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -255,9 +273,7 @@ CREATE TABLE `panier` (
 --
 
 INSERT INTO `panier` (`id_panier`, `id_client`, `id_produit`) VALUES
-(34, 1, 55),
-(35, 3, 45),
-(36, 3, 55);
+(46, 1, 55);
 
 -- --------------------------------------------------------
 
@@ -385,7 +401,8 @@ CREATE TABLE `voteavis` (
 -- Index pour la table `adressearchive`
 --
 ALTER TABLE `adressearchive`
-  ADD PRIMARY KEY (`id_adresseclient`);
+  ADD PRIMARY KEY (`id_adresseclient`),
+  ADD UNIQUE KEY `id_client` (`id_client`);
 
 --
 -- Index pour la table `adresseclient`
@@ -419,7 +436,7 @@ ALTER TABLE `client`
 -- Index pour la table `commande`
 --
 ALTER TABLE `commande`
-  ADD PRIMARY KEY (`id_commande`,`num_commande`),
+  ADD PRIMARY KEY (`id_commande`),
   ADD KEY `id_client` (`id_client`);
 
 --
@@ -488,12 +505,12 @@ ALTER TABLE `voteavis`
 -- AUTO_INCREMENT pour la table `adressearchive`
 --
 ALTER TABLE `adressearchive`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT pour la table `adresseclient`
 --
 ALTER TABLE `adresseclient`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
@@ -513,7 +530,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT pour la table `liaisonproduit`
 --
@@ -533,7 +550,7 @@ ALTER TABLE `marques`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT pour la table `photoproduit`
 --
@@ -557,6 +574,12 @@ ALTER TABLE `voteavis`
 --
 -- Contraintes pour les tables exportées
 --
+
+--
+-- Contraintes pour la table `adressearchive`
+--
+ALTER TABLE `adressearchive`
+  ADD CONSTRAINT `fk_idclient` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
 --
 -- Contraintes pour la table `adresseclient`

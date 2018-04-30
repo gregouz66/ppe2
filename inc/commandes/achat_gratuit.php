@@ -67,6 +67,7 @@ if (isset($_POST['achat_gratuit'])){
     //RECUP ID ADRESSE ARCHIVER
     $adr_livraison = $bdd->lastInsertId();
 
+
     //AJOUTER LA COMMANDE DANS LA TABLE COMMANDE SANS LE NUM COMMANDE ET FACTURE
     $creationcommande = $bdd->prepare("INSERT INTO commande(datetime_commande, etat_commande, totalTTC, totalHT, fraisportHT, id_client, id_adresse_livraison, type_livraison, type_reglement, methode_reglement) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $creationcommande->execute(array($date_commande, $etat_commande, $totalTTC, $totalHT, $fraisport, $id_client, $adr_livraison, $type_livraison, $type_regl, $methode_regl));
@@ -89,7 +90,7 @@ if (isset($_POST['achat_gratuit'])){
         $deletecom->execute(array($id_client));
         header("Location: mercicommande.php");
       } else {
-        $errors[] = 'Problème lors du traitement de la commande !';
+        $errors[] = 'Problème lors du traitement de la commande ! (1)';
         //Suppression de la commande qui n'a aucun num facture ni commande
         $deletecom = $bdd->prepare("DELETE FROM commande WHERE id_commande = ? LIMIT 1");
         $deletecom->execute(array($UID));
@@ -99,14 +100,14 @@ if (isset($_POST['achat_gratuit'])){
         var_dump($ajoutfactcom->errorInfo());
       }
     } else {
-      $errors[] = 'Problème lors du traitement de la commande !';
+      $errors[] = 'Problème lors du traitement de la commande ! (2)';
       //Suppression de l'adresse archiver
       $deletecom = $bdd->prepare("DELETE FROM adressearchive WHERE id_adresseclient = ? LIMIT 1");
       $deletecom->execute(array($adr_livraison));
       var_dump($creationcommande->errorInfo());
     }
   } else {
-    $errors[] = 'Problème lors du traitement de la commande !';
+    $errors[] = 'Problème lors du traitement de la commande ! (3)';
     var_dump($creationarchive->errorInfo());
   }
 }

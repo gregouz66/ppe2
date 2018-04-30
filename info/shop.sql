@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 30 Avril 2018 à 07:37
+-- Généré le :  Lun 30 Avril 2018 à 15:08
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -48,7 +48,9 @@ CREATE TABLE `adressearchive` (
 --
 
 INSERT INTO `adressearchive` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`) VALUES
-(22, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL);
+(27, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL),
+(28, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL),
+(29, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -80,8 +82,7 @@ CREATE TABLE `adresseclient` (
 --
 
 INSERT INTO `adresseclient` (`id_adresseclient`, `id_client`, `libelle_adresseclient`, `nomcomplet_adresseclient`, `societe_adresseclient`, `voie_adresseclient`, `complement_adresseclient`, `lieuditbp_adresseclient`, `codepostal_adresseclient`, `etatprovince_adresseclient`, `ville_adresseclient`, `pays_adresseclient`, `typeadresse_adresseclient`, `idclient_type_adresseclient`, `adressedefaut_adresseclient`, `idclient_adressedefaut_adresseclient`) VALUES
-(21, 1, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL),
-(22, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
+(23, 2, '35 rue jean bouin', 'Gr&eacute;gory Cascales', '', NULL, NULL, NULL, '66280', 'Occitanie', 'Saleilles', 'France', NULL, NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -174,6 +175,7 @@ INSERT INTO `client` (`id_client`, `email_client`, `nom_affichage`, `mot_de_pass
 
 CREATE TABLE `commande` (
   `id_commande` int(11) NOT NULL,
+  `produits_commande` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `datetime_commande` datetime NOT NULL,
   `etat_commande` float NOT NULL,
   `totalTTC` float NOT NULL,
@@ -194,10 +196,8 @@ CREATE TABLE `commande` (
 -- Contenu de la table `commande`
 --
 
-INSERT INTO `commande` (`id_commande`, `datetime_commande`, `etat_commande`, `totalTTC`, `totalHT`, `fraisportHT`, `id_client`, `id_adresse_facturation`, `id_adresse_livraison`, `type_livraison`, `num_commande`, `num_facture`, `type_reglement`, `methode_reglement`, `liste_parametres_reglement`) VALUES
-(7, '2018-04-27 14:58:50', 0, 60, 60, 0, 1, NULL, 19, 'Standard', 'COM7', 'FACT7', 'GRATUIT', '1', NULL),
-(8, '2018-04-30 09:25:56', 0, 15, 15, 0, 2, NULL, 20, 'Standard', 'COM8', 'FACT8', 'GRATUIT', '1', NULL),
-(9, '2018-04-30 09:33:56', 0, 195, 195, 0, 2, NULL, 22, 'Standard', 'COM9', 'FACT9', 'GRATUIT', '1', NULL);
+INSERT INTO `commande` (`id_commande`, `produits_commande`, `datetime_commande`, `etat_commande`, `totalTTC`, `totalHT`, `fraisportHT`, `id_client`, `id_adresse_facturation`, `id_adresse_livraison`, `type_livraison`, `num_commande`, `num_facture`, `type_reglement`, `methode_reglement`, `liste_parametres_reglement`) VALUES
+(14, '63,64', '2018-04-30 14:45:15', 0, 140, 140, 0, 2, NULL, 29, 'Standard', 'COM14', 'FACT14', 'GRATUIT', '1', NULL);
 
 -- --------------------------------------------------------
 
@@ -402,7 +402,7 @@ CREATE TABLE `voteavis` (
 --
 ALTER TABLE `adressearchive`
   ADD PRIMARY KEY (`id_adresseclient`),
-  ADD UNIQUE KEY `id_client` (`id_client`);
+  ADD KEY `id_client` (`id_client`);
 
 --
 -- Index pour la table `adresseclient`
@@ -505,12 +505,12 @@ ALTER TABLE `voteavis`
 -- AUTO_INCREMENT pour la table `adressearchive`
 --
 ALTER TABLE `adressearchive`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT pour la table `adresseclient`
 --
 ALTER TABLE `adresseclient`
-  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_adresseclient` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT pour la table `avis`
 --
@@ -530,7 +530,7 @@ ALTER TABLE `client`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT pour la table `liaisonproduit`
 --
@@ -550,17 +550,17 @@ ALTER TABLE `marques`
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_panier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT pour la table `photoproduit`
 --
 ALTER TABLE `photoproduit`
-  MODIFY `id_photoproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_photoproduit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id_produit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
@@ -579,7 +579,7 @@ ALTER TABLE `voteavis`
 -- Contraintes pour la table `adressearchive`
 --
 ALTER TABLE `adressearchive`
-  ADD CONSTRAINT `fk_idclient` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
+  ADD CONSTRAINT `adressearchive_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`);
 
 --
 -- Contraintes pour la table `adresseclient`

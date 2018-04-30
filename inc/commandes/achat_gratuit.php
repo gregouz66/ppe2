@@ -69,8 +69,8 @@ if (isset($_POST['achat_gratuit'])){
 
 
     //AJOUTER LA COMMANDE DANS LA TABLE COMMANDE SANS LE NUM COMMANDE ET FACTURE
-    $creationcommande = $bdd->prepare("INSERT INTO commande(datetime_commande, etat_commande, totalTTC, totalHT, fraisportHT, id_client, id_adresse_livraison, type_livraison, type_reglement, methode_reglement) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $creationcommande->execute(array($date_commande, $etat_commande, $totalTTC, $totalHT, $fraisport, $id_client, $adr_livraison, $type_livraison, $type_regl, $methode_regl));
+    $creationcommande = $bdd->prepare("INSERT INTO commande(datetime_commande, produits_commande, etat_commande, totalTTC, totalHT, fraisportHT, id_client, id_adresse_livraison, type_livraison, type_reglement, methode_reglement) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $creationcommande->execute(array($date_commande, $prod_panier, $etat_commande, $totalTTC, $totalHT, $fraisport, $id_client, $adr_livraison, $type_livraison, $type_regl, $methode_regl));
     $result_com = $creationcommande->rowCount();
 
     if($result_com == 1){

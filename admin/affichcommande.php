@@ -7,6 +7,9 @@ $req->execute(array($id_commande));
 $result = $req->fetch();
 if($result) {
 
+  $produits = explode(",", $result["produits_commande"]); //Array avec tt les prod de la commande
+  $nbreprod = count($produits); //nbre produits commande
+
   //RECUP INFOS CLIENT
   $id_client = $result["id_client"];
   $req_client = $bdd->prepare('SELECT * FROM client WHERE id_client = ? LIMIT 1');
@@ -120,6 +123,39 @@ if($result) {
                 ?>
               </div>
               <hr>
+              <div class="table-responsive">
+                  <?php
+                    // debut du tableau
+                    echo '<table class="table table-striped table-sm">';
+                        echo '<thread>';
+                        // on affiche les titres
+                        echo '<tr>';
+
+                        echo '<th>Code produit</th>';
+
+                        echo '<th>Nom produit</th>';
+
+                        foreach ($produits as $row) {
+                          $req_prod = $bdd->prepare('SELECT * FROM produits WHERE id_produit = ? LIMIT 1');
+                          $req_prod->execute(array($row));
+                          // On récupère le resultat
+                          $result_prod = $req_prod->fetch();
+
+                          echo '<tr>';
+
+                          echo '<td>'.$result_prod["code_produit"].'</td>';
+
+                          echo '<td>'.$result_prod["nom_produit"].'</td>';
+
+                          echo '</tr>';
+                        }
+
+                echo '</tbody>';
+                    echo '</table>';
+                    // fin du tableau.
+                    ?>
+                  </div>
+                  <hr>
               <div class="row">
                 <div class="col-md-6 col-sm-6" style="border-right:solid;">
                   <h5>Adresse de livraison</h5>

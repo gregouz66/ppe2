@@ -88,6 +88,11 @@ if (isset($_POST['achat_gratuit'])){
         //Suppression du panier qui vient d'être commandé
         $deletecom = $bdd->prepare("DELETE FROM panier WHERE id_client = ? ");
         $deletecom->execute(array($id_client));
+
+        //CREATION PDF FACTURE COMMANDE
+        require('inc/commandes/html2pdf/html2pdf.php');
+
+
         header("Location: mercicommande.php");
       } else {
         $errors[] = 'Problème lors du traitement de la commande ! (1)';

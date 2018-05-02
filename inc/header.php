@@ -229,7 +229,7 @@
        </form>
    </section>
 
-  <!-- Links -->
+  <!-- Links dropdown catégories -->
    <section class="sct_dropdown">
 
      <div class="titre_section_dropdown_first">

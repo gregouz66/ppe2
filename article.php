@@ -142,15 +142,18 @@ if (isset($_POST['commentez'])){
   <?php     if($resultavis) {
       foreach($resultavis as $row) {
 
-        $requseravis = $bdd->prepare('SELECT * FROM client WHERE id_client = (SELECT id_client FROM avis WHERE id_client = ?)');
-        $requseravis->execute(array($row['id_client']));
-        $resultoui = $requseravis->fetch();
+    //      $requseravis = $bdd->prepare('SELECT * FROM client WHERE id_client = (SELECT id_client FROM avis WHERE id_client = ?)');
+      //    $requseravis->execute(array($row['id_client']));
+        //  $resultoui = $requseravis->fetch();
 
+$test=$bdd->prepare('select * from client where id_client=?');
+$test ->execute(array($row['id_client']));
+  $oui = $test->fetch();
     ?>
 
 <div class="comentaire">
   <h3><?php echo $row['titre_avis'] ?></h3>
-  <p><strong><?php echo $resultoui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?> /5</p>
+  <p><strong><?php echo $oui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?> /5</p>
 <p><?php echo $row['description_avis'] ?></p>
 
 </div>

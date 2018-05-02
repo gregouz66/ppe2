@@ -22,7 +22,24 @@
   $resultavis = $reqavis->fetchAll();
 
 
+if (isset($_POST['commentez'])){
+  if (empty($_POST['titre']) || empty($_POST['vote']) || empty($_POST['comment'])){
+    echo 'remplir tout les champs ';
 
+  }else{
+  
+    $idclient = $_SESSION['id_client'];
+    date_default_timezone_set('europe/paris');
+    $today = date("j, n, Y");
+    $titre = htmlentities(trim($_POST['titre']));
+    $description = htmlentities(trim($_POST['comment']));
+    $note = htmlentities(trim($_POST['vote']));
+
+
+    $commentaire = $bdd->prepare("INSERT INTO avis (id_produit, id_client, titre_avis, description_avis, note_avis, date_avis) VALUES(?, ?, ?, ?, ?, NOW())");
+    $commentaire->execute(array($id, $idclient, $titre, $description, $note ));
+  }
+}
 
 ?>
 
@@ -97,13 +114,13 @@
   <?php ?>
   <div class="lecom">
       <h1>Laissez nous un commentaire :</h1>
-      <form class="lecommentaire" action="index.html" method="post">
+      <form class="lecommentaire" action="article.php?id=<?php echo $row["id_produit"];?>" method="post">
         <input type="text" name="titre" placeholder="titre du commentaire">
-        <div class="vote">
+        <div class="voteavis">
           <span><strong>note : </strong>
 
 
-            <select class="noteselect" >
+            <select class="noteselect" name="vote">
   <option value="1"> 1</option>
   <option value="2" >2</option>
   <option value="3">3</option>
@@ -125,15 +142,18 @@
   <?php     if($resultavis) {
       foreach($resultavis as $row) {
 
-        $requseravis = $bdd->prepare('SELECT * FROM client WHERE id_client = (SELECT id_client FROM avis WHERE id_client = ?)');
-        $requseravis->execute(array($row['id_client']));
-        $resultoui = $requseravis->fetch();
+    //      $requseravis = $bdd->prepare('SELECT * FROM client WHERE id_client = (SELECT id_client FROM avis WHERE id_client = ?)');
+      //    $requseravis->execute(array($row['id_client']));
+        //  $resultoui = $requseravis->fetch();
 
+$test=$bdd->prepare('select * from client where id_client=?');
+$test ->execute(array($row['id_client']));
+  $oui = $test->fetch();
     ?>
 
 <div class="comentaire">
   <h3><?php echo $row['titre_avis'] ?></h3>
-  <p><strong><?php echo $resultoui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?></p>
+  <p><strong><?php echo $oui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?> /5</p>
 <p><?php echo $row['description_avis'] ?></p>
 
 </div>

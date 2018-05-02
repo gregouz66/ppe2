@@ -15,7 +15,10 @@ h4
 	font-family: fantasy;
 	margin-bottom: 0;
 }
-
+.voteavis{
+	width: auto;
+	padding-bottom: 5px;
+}
 .ancien_prix {
   text-decoration: line-through;
   color: red;
@@ -93,4 +96,9 @@ ul.note_produit li label{
 }
 ul.note_produit li.note-off label{
 	background-position: center -60px;
+}
+.noteselect{
+width: 5% !important;
+
+
 }

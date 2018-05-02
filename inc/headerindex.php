@@ -132,9 +132,9 @@
                 <div class="bg-inverse p-4">
                   <h4 class="text-white">Les vêtements</h4>
                   <a href="categorie.php?cat=tshirt"><img class="img_cat4" sizes="" src="images/header/tshirt.jpg"></a>
-                  <a href="categorie.php?cat=pull"><img class="img_cat4" sizes="" src="images/header/pull.jpg"></a>
-                  <a href="categorie.php?cat=pantalon"><img class="img_cat4" sizes="" src="images/header/jean.jpg"></a>
-                  <a href="categorie.php?cat=jogging"><img class="img_cat4" sizes="" src="images/header/jogging.jpg"></a>
+                  <a href="categorie.php?cat=pulls"><img class="img_cat4" sizes="" src="images/header/pull.jpg"></a>
+                  <a href="categorie.php?cat=jeans"><img class="img_cat4" sizes="" src="images/header/jean.jpg"></a>
+                  <a href="categorie.php?cat=joggings"><img class="img_cat4" sizes="" src="images/header/jogging.jpg"></a>
                 </div>
               </div>
 
@@ -142,10 +142,10 @@
                 <div class="bg-inverse p-4">
                   <h4 class="text-white">Les chaussures</h4>
                   <a href="categorie.php?cat=chaussures&marque=nike"><img class="img_cat5" sizes="" src="images/header/chaussurenike.jpg"></a>
-                  <a href="categorie.php?cat=chaussures&marque=coqsportif"><img class="img_cat5" sizes="" src="images/header/chaussurecoq.jpg"></a>
-                  <a href="categorie.php?cat=chaussures&marque=ralphlauren"><img class="img_cat5" sizes="" src="images/header/chaussureralph.jpg"></a>
+                  <a href="categorie.php?cat=chaussures&marque=le%20coq%20sportif"><img class="img_cat5" sizes="" src="images/header/chaussurecoq.jpg"></a>
+                  <a href="categorie.php?cat=chaussures&marque=ralph%20lauren"><img class="img_cat5" sizes="" src="images/header/chaussureralph.jpg"></a>
                   <a href="categorie.php?cat=chaussures&marque=adidas"><img class="img_cat5" sizes="" src="images/header/chaussureadidas.jpg"></a>
-                  <a href="categorie.php?cat=chaussures&marque=tommyhilfiger"><img class="img_cat5" sizes="" src="images/header/chaussuretommy.jpg"></a>
+                  <a href="categorie.php?cat=chaussures&marque=tommy%20hilfiger"><img class="img_cat5" sizes="" src="images/header/chaussuretommy.jpg"></a>
                 </div>
               </div>
 
@@ -154,9 +154,9 @@
                   <h4 class="text-white">Les marques</h4>
                   <a href="categorie.php?marque=nike"><img class="img_cat5" sizes="" src="images/header/logonike.jpg"></a>
                   <a href="categorie.php?marque=adidas"><img class="img_cat5" sizes="" src="images/header/logoadidas.jpg"></a>
-                  <a href="categorie.php?marque=ralphlauren"><img class="img_cat5" sizes="" src="images/header/logoralph.jpg"></a>
-                  <a href="categorie.php?marque=coqsportif"><img class="img_cat5" sizes="" src="images/header/logocoq.jpg"></a>
-                  <a href="categorie.php?marque=tommyhilfiger"><img class="img_cat5" sizes="" src="images/header/logotommy.png"></a>
+                  <a href="categorie.php?marque=ralph%20lauren"><img class="img_cat5" sizes="" src="images/header/logoralph.jpg"></a>
+                  <a href="categorie.php?marque=le%20coq%20sportif"><img class="img_cat5" sizes="" src="images/header/logocoq.jpg"></a>
+                  <a href="categorie.php?marque=tommy%20hilfiger"><img class="img_cat5" sizes="" src="images/header/logotommy.png"></a>
                 </div>
               </div>
 
@@ -236,17 +236,17 @@
        </form>
    </section>
 
-  <!-- Links -->
+  <!-- Links dropdown catégories -->
    <section class="sct_dropdown">
 
      <div class="titre_section_dropdown_first">
        <details class="details_dropdown" data-testid="footer-links">
          <summary class="summary_dropdown" role="menu"><h3 class="style_titre_dropdown">Toutes les marques</h3></summary>
-         <a class="link_details2" href="categorie.php?marque=nike" role="menuitem"><h3 class="zoom">Nike</h3></a>
-         <a class="link_details2" href="categorie.php?marque=coqsportif" role="menuitem"><h3 class="zoom">Coq Sportif</h3></a>
-         <a class="link_details2" href="categorie.php?marque=ralphlauren" role="menuitem"><h3 class="zoom">Ralph Lauren</h3></a>
-         <a class="link_details2" href="categorie.php?marque=adidas" role="menuitem"><h3 class="zoom">Adidas</h3></a>
-         <a class="link_details2" href="categorie.php?marque=tommyhilfiger" role="menuitem"><h3 class="zoom">Tommy Hilfiger</h3></a>
+         <a class="link_details2" href="categorie.php?marque=Nike" role="menuitem"><h3 class="zoom">Nike</h3></a>
+         <a class="link_details2" href="categorie.php?marque=Le%20coq%20sportif" role="menuitem"><h3 class="zoom">Coq Sportif</h3></a>
+         <a class="link_details2" href="categorie.php?marque=Ralph%20Lauren" role="menuitem"><h3 class="zoom">Ralph Lauren</h3></a>
+         <a class="link_details2" href="categorie.php?marque=Adidas" role="menuitem"><h3 class="zoom">Adidas</h3></a>
+         <a class="link_details2" href="categorie.php?marque=tommy%20hilfiger" role="menuitem"><h3 class="zoom">Tommy Hilfiger</h3></a>
        </details>
      </div>
 
@@ -254,20 +254,20 @@
        <details class="details_dropdown" data-testid="footer-links">
          <summary class="summary_dropdown" role="menu"><h3 class="style_titre_dropdown">Les vêtements</h3></summary>
          <a class="link_details2" href="categorie.php?cat=tshirt" role="menuitem"><h3 class="zoom">T-shirt</h3></a>
-         <a class="link_details2" href="categorie.php?cat=pull" role="menuitem"><h3 class="zoom">Pull</h3></a>
-         <a class="link_details2" href="categorie.php?cat=pantalon" role="menuitem"><h3 class="zoom">Pantalon</h3></a>
-         <a class="link_details2" href="categorie.php?cat=jogging" role="menuitem"><h3 class="zoom">Jogging</h3></a>
+         <a class="link_details2" href="categorie.php?cat=Pulls" role="menuitem"><h3 class="zoom">Pull</h3></a>
+         <a class="link_details2" href="categorie.php?cat=Jeans" role="menuitem"><h3 class="zoom">Pantalon</h3></a>
+         <a class="link_details2" href="categorie.php?cat=Joggings" role="menuitem"><h3 class="zoom">Jogging</h3></a>
        </details>
      </div>
 
      <div class="titre_section_dropdown">
        <details class="details_dropdown" data-testid="footer-links">
          <summary class="summary_dropdown" role="menu"><h3 class="style_titre_dropdown">Les chaussures</h3></summary>
-         <a class="link_details2" href="categorie.php?cat=chaussures&marque=nike" role="menuitem"><h3 class="zoom">Nike</h3></a>
-         <a class="link_details2" href="categorie.php?cat=chaussures&marque=coqsportif" role="menuitem"><h3 class="zoom">Coq Sportif</h3></a>
-         <a class="link_details2" href="categorie.php?cat=chaussures&marque=ralphlauren" role="menuitem"><h3 class="zoom">Ralph Lauren</h3></a>
-         <a class="link_details2" href="categorie.php?cat=chaussures&marque=adidas" role="menuitem"><h3 class="zoom">Adidas</h3></a>
-         <a class="link_details2" href="categorie.php?cat=chaussures&marque=tommyhilfiger" role="menuitem"><h3 class="zoom">Tommy Hilfiger</h3></a>
+         <a class="link_details2" href="categorie.php?cat=chaussures&marque=Nike" role="menuitem"><h3 class="zoom">Nike</h3></a>
+         <a class="link_details2" href="categorie.php?cat=chaussures&marque=Le%20coq%20sportif" role="menuitem"><h3 class="zoom">Coq Sportif</h3></a>
+         <a class="link_details2" href="categorie.php?cat=chaussures&marque=Ralph%20Lauren" role="menuitem"><h3 class="zoom">Ralph Lauren</h3></a>
+         <a class="link_details2" href="categorie.php?cat=chaussures&marque=Adidas" role="menuitem"><h3 class="zoom">Adidas</h3></a>
+         <a class="link_details2" href="categorie.php?cat=chaussures&marque=tommy%20hilfiger" role="menuitem"><h3 class="zoom">Tommy Hilfiger</h3></a>
        </details>
      </div>
 

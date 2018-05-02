@@ -27,7 +27,7 @@ if (isset($_POST['commentez'])){
     echo 'remplir tout les champs ';
 
   }else{
-  
+
     $idclient = $_SESSION['id_client'];
     date_default_timezone_set('europe/paris');
     $today = date("j, n, Y");
@@ -67,13 +67,16 @@ if (isset($_POST['commentez'])){
             $promoeuro = $prix * $promo / 100;
             $promoprix = $prix - $promoeuro;
             $promoprix = str_replace(",",".",$promoprix);
+
           }
+
 
           //Attribuer le value des marque
           $marque_prod = $row['libelle_marque'];
 
           //Attribue maj au premier mot
           $couleur_prod = ucfirst(strtolower($row['couleur_produit']))?>
+
 
    		<!-- div de l'image de l'article selectionner -->
     	<div class="cadre-image-article">
@@ -94,6 +97,18 @@ if (isset($_POST['commentez'])){
 
 
     	</div>
+      <button type="button" onclick="ajout_panier(<?php echo $row['id_produit']; ?>);" class="momo" >
+        ajouter au panier
+        
+        <span class="span_icon_header">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+            <path fill="black" fill-rule="nonzero" d="M18 17.987V7H2v11l16-.013zM4.077 5A5.996 5.996 0 0 1 10 0c2.973 0 5.562 2.162 6.038 5H20v14.986L0 20V5h4.077zm9.902-.005C13.531 3.275 11.86 2 10 2 8.153 2 6.604 3.294 6.144 4.995c.92 0 7.654.03 7.835 0z"></path>
+          </svg>
+        </span>
+
+        <span class="span_panier_icon_header"></span>
+
+      </button>
 
     	<!-- div du prix de l'article -->
 
@@ -164,6 +179,20 @@ $test ->execute(array($row['id_client']));
 
 
 </script>
+<!-- SCRIPT POUR AJOUT DANS PANIER -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+function ajout_panier(id)
+{
+  // var id = $('#id').val();
+  $.post('inc/panier/ajout_panier.php',{postid:id},
+function(data)
+{
+  $('#result').html(data);
+});
+}
+</script>
+
 
 
 <!-- FOOTER -->

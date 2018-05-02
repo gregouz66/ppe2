@@ -27,7 +27,7 @@ if (isset($_POST['commentez'])){
     echo 'remplir tout les champs ';
 
   }else{
-    echo 'OUI';
+  
     $idclient = $_SESSION['id_client'];
     date_default_timezone_set('europe/paris');
     $today = date("j, n, Y");

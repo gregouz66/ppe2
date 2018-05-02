@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.4.1
+-- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Mer 02 Mai 2018 à 09:06
--- Version du serveur :  5.7.14
--- Version de PHP :  5.6.25
+-- Client :  localhost
+-- Généré le :  Mer 02 Mai 2018 à 09:10
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -103,7 +103,7 @@ INSERT INTO `adresseclient` (`id_adresseclient`, `id_client`, `libelle_adressecl
 
 CREATE TABLE `avis` (
   `id_avis` int(11) NOT NULL,
-  `idclient_idproduit_avis` int(11) NOT NULL,
+  `idclient_idproduit_avis` int(11) DEFAULT NULL,
   `id_produit` int(11) NOT NULL,
   `id_client` int(11) NOT NULL,
   `date_avis` date NOT NULL,

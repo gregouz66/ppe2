@@ -100,29 +100,17 @@
       <form class="lecommentaire" action="index.html" method="post">
         <input type="text" name="titre" placeholder="titre du commentaire">
         <div class="vote">
-          <span><strong>Vote : </strong><ul class="note_produit">
-            <li>
-                <label for="note01" title="Note&nbsp;: 1 sur 5">1</label>
-                <input type="radio" name="notesA" id="note01" value="1"/>
-            </li>
-            <li>
-                <label for="note02" title="Note&nbsp;: 2 sur 5">2</label>
-                <input type="radio" name="notesA" id="note02" value="2"/>
-            </li>
-            <li>
-                <label for="note03" title="Note&nbsp;: 3 sur 5">3</label>
-                <input type="radio" name="notesA" id="note03" value="3"/>
-            </li>
-            <li>
-                <label for="note04" title="Note&nbsp;: 4 sur 5">4</label>
-                <input type="radio" name="notesA" id="note04" value="4"/>
-            </li>
-            <li>
-                <label for="note05" title="Note&nbsp;: 5 sur 5">5</label>
-                <input type="radio" name="notesA" id="note05" value="5"/>
-            </li>
+          <span><strong>note : </strong>
 
-          </ul>
+
+            <select class="noteselect" >
+  <option value="1"> 1</option>
+  <option value="2" >2</option>
+  <option value="3">3</option>
+  <option value="4" >4</option>
+  <option value="5">5</option>
+
+</select>
         </span>
         </div>
         <textarea name="comment" rows="6" cols="80"></textarea>
@@ -152,6 +140,10 @@
 <?php }} ?>
 </div>
 </article>
+<script text="Javascript" src="./assets/js/article.js">
+
+
+</script>
 
 
 <!-- FOOTER -->

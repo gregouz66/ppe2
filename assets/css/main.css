@@ -31,6 +31,11 @@ input[type="text"]:disabled, select:disabled {
 	color: white-space;
 }
 
+.noteselect{
+width: 5% !important;
+
+
+}
 .errors {
 	height: 0!important;
 	letter-spacing: 0!important;

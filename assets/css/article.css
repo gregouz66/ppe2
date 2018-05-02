@@ -97,3 +97,8 @@ ul.note_produit li label{
 ul.note_produit li.note-off label{
 	background-position: center -60px;
 }
+.noteselect{
+width: 5% !important;
+
+
+}

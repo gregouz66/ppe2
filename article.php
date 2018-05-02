@@ -150,7 +150,7 @@ if (isset($_POST['commentez'])){
 
 <div class="comentaire">
   <h3><?php echo $row['titre_avis'] ?></h3>
-  <p><strong><?php echo $resultoui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?></p>
+  <p><strong><?php echo $resultoui['nom_client']?></strong> le <?php echo $row['date_avis'] ?> note : <?php echo $row['note_avis'] ?> /5</p>
 <p><?php echo $row['description_avis'] ?></p>
 
 </div>
